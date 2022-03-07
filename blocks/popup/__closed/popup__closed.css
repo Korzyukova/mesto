@@ -3,7 +3,7 @@
   padding: 0;
   width: 32px;
   height: 32px;
-  background: url(../images/CloseCross.png);
+  background: url(../../../images/CloseCross.png);
   background-position: center;
   border: none;
   position: absolute;
@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 .popup__closed:hover {
-  background: url(../images/Closehover.png);
+  background: url(../../../images/Closehover.png);
   background-position: center;
 }
 @media (max-width: 550px) {
