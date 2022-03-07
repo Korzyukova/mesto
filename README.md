@@ -8,6 +8,8 @@ In that project you will learn a lot of different technologies, such a  HTML, BE
 
 ## __GitHubPages__
 
+https://korzyukova.github.io/mesto/
+
 
 >Thank you for your patience, dear reviewer.
 
