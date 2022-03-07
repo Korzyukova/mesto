@@ -1,0 +1,21 @@
+.profile__description {
+  margin: 0;
+  padding: 0;
+  margin-top: 16px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+}
+@media (max-width: 720px) {
+  .profile__description {
+    align-self: center;
+  }
+}
+@media (max-width: 320px) {
+  .profile__description {
+    align-self: center;
+  }
+}

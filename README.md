@@ -1,17 +1,14 @@
 # Проект: Место
 
-### Обзор
+## INTRO
+Mesto is a web application which gives you an idea where to travel across the country and with ability to make a personal profile and add your own visited places.
+## __Requirements and technologies__
 
-* Figma
-* Картинки
+In that project you will learn a lot of different technologies, such a  HTML, BEM, CSS, JavaScript, flexbox, grid, key-frames etc.
 
-**Figma**
+## __GitHubPages__
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
-**Картинки**
+>Thank you for your patience, dear reviewer.
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+:tractor:

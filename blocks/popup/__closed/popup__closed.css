@@ -1,0 +1,33 @@
+.popup__closed {
+  margin: 0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  background: url(../images/CloseCross.png);
+  background-position: center;
+  border: none;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  cursor: pointer;
+}
+.popup__closed:hover {
+  background: url(../images/Closehover.png);
+  background-position: center;
+}
+@media (max-width: 550px) {
+  .popup__closed {
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: -36px;
+  }
+}
+@media (max-width: 550px) {
+  .popup__closed:hover {
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: -36px;
+  }
+}

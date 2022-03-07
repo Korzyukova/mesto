@@ -1,0 +1,5 @@
+.photo-grid__rectangle {
+  min-width: 282px;
+  background-color: white;
+  border-radius: 10px;
+}
