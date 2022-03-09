@@ -24,6 +24,12 @@
     height: 46px;
   }
 }
+@media (max-width: 320px) {
+  .popup__submit {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
 .popup__submit:hover {
   opacity: 0.8;
 }

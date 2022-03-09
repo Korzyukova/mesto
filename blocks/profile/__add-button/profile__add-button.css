@@ -2,8 +2,9 @@
   margin: 0;
   padding: 0;
   margin-top: 75px;
-  margin-right: 200px;
+  margin-right: 0px;
   background-image: url(../../../images/Cross.png);
+  background-color: black;
   background-repeat: no-repeat;
   background-position: center;
   border: 1px solid #ffffff;

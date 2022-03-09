@@ -2,8 +2,7 @@
   margin: 0px;
   display: grid;
   padding: 0;
-  padding-left: 200px;
-  padding-right: 200px;
+  padding: 0 auto;
   grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
   list-style-type: none;
   grid-gap: 17px 17px;
@@ -27,6 +26,6 @@
   .photo-grid {
     grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
     grid-gap: 12px 12px;
-    padding: 26px 16px 0px;
+    padding: 20px 19px 0px;
   }
 }

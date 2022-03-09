@@ -1,6 +1,5 @@
 .header {
-  margin-left: 200px;
-  margin-right: 200px;
+  margin: 0 auto;
   border-bottom: solid 1px #545454;
 }
 @media (max-width: 1024px) {

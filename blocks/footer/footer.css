@@ -1,5 +1,5 @@
 .footer {
-  margin-left: 200px;
+  margin: 0 auto;
 }
 @media (max-width: 1024px) {
   .footer {
