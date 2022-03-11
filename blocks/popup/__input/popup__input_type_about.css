@@ -1,10 +1,8 @@
-.popup__input_about {
+.popup__input_type_about {
   margin: 0;
   padding: 0;
-  margin-left: 36px;
-  margin-right: 36px;
   margin-top: 43px;
-  font-family: Inter;
+  font-family: "Inter", "Arial", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -13,7 +11,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 @media (max-width: 320px) {
-  .popup__input_about {
+  .popup__input_type_about {
     margin: 43px 22px 0px;
   }
 }
