@@ -1,6 +1,6 @@
 
-let nameInput = document.querySelector('.popup__input')
-let jobInput = document.querySelector('.popup__input_about')
+let nameInput = document.querySelector('.popup__input_type_name');
+let jobInput = document.querySelector('.popup__input_type_about')
 let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
 
@@ -12,7 +12,14 @@ const closePopup = popup.querySelector('.popup__closed');
 function togglePopup() {
     popup.classList.toggle('popup_opened');   
 }
-openPopup.addEventListener('click', togglePopup);
+
+
+openPopup.addEventListener('click', () => {
+    togglePopup()
+    nameInput.value = profileName.textContent
+    jobInput.value = profileDescription.textContent 
+});
+
 
 closePopup.addEventListener('click', togglePopup);
 
@@ -27,9 +34,11 @@ function formSubmitHandler (evt) {
     console.log('jobInput=', jobInput);
 
 
-    profileName.textContent = nameInput;
+  
 
-    profileDescription.textContent = jobInput;
+    profileName.textContent = nameInput.value;
+
+    profileDescription.textContent = jobInput.value;
 
     togglePopup();
 }
