@@ -1,6 +1,7 @@
 .photo-grid__item {
   min-width: 282px;
   width: 100%;
+  height: 282px;
   background-size: cover;
   border-radius: 10px 10px 0px 0px;
 }

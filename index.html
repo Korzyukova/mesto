@@ -38,8 +38,8 @@
             </section>
 
             <ul class="photo-grid">
+                <!--
                 <li class="photo-grid__rectangle">
-
                     <img class="photo-grid__item" src="./images/Karachaevsk.jpg" alt="Старая церковь в горах">
                     <div class="photo-grid__bottom">
                         <h2 class="photo-grid__name">Карачаевск</h2>
@@ -81,6 +81,7 @@
                         <button class="photo-grid__heart"></button>
                     </div>
                 </li>
+                -->
             </ul>
 
             <footer class="footer">
@@ -89,8 +90,8 @@
 
         </div>
 
-        <div class="popup">
-            <form class="popup__container popup__content">
+        <div class="popup" id="popup1">
+            <form class="popup__container popup__content" id="form1">
                 <button class="popup__closed" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input class="popup__input popup__input_type_name" type="text" name="name" placeholder="Введите имя">
@@ -99,8 +100,28 @@
 
             </form>
         </div>
-    </div>
-    <script src="./scripts/index.js"></script>
+        <div class="popup" id="popup2">
+            <form class="popup__container popup__content" id="form2">
+                <button class="popup__closed" type="button"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <input class="popup__input popup__input_type_place-name" type="text" name="name" placeholder="Название">
+                <input class="popup__input popup__input_type_link" type="text" name="link"
+                    placeholder="Ссылка на картинку">
+                <button class="popup__submit" type="submit">Сохранить</button>
+
+            </form>
+
+        </div>
+        <div class="popup" id="popup3">
+            <div class="popup__container popup__content">
+                <img class="popup__image"/>
+                <button class="popup__closed" type="button"></button>
+                
+                <div class="popup__image_name"></div>
+            </div>
+           
+        </div>
+        <script src="./scripts/index.js"></script>
 </body>
 
 </html>
