@@ -1,7 +1,5 @@
-.popup_opened {
+.popup__image_wrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  visibility: visible;
-  opacity: 1;
 }

@@ -1,0 +1,7 @@
+.popup__content_image {
+  position: relative;
+}
+@media (max-width: 500px) {
+  .popup__content_image {
+  }
+}

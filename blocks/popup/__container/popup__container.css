@@ -2,3 +2,8 @@
   display: flex;
   margin: 195px auto 0px;
 }
+@media (max-width: 320px) {
+  .popup__container {
+    width: 240px;
+  }
+}

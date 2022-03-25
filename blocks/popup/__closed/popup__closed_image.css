@@ -1,0 +1,34 @@
+.popup__closed_image {
+  margin: 0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  background: url(../../../images/CloseCross.png);
+  background-position: center;
+  border: none;
+  position: absolute;
+  cursor: pointer;
+  margin-bottom: 8px;
+  right: -40px;
+  top: -40px;
+}
+.popup__closed_image:hover {
+  background: url(../../../images/Closehover.png);
+  background-position: center;
+}
+@media (max-width: 550px) {
+  .popup__closed_image {
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: -36px;
+  }
+}
+@media (max-width: 550px) {
+  .popup__closed_image:hover {
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: -36px;
+  }
+}

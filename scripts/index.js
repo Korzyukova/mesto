@@ -17,7 +17,7 @@ const openPopup2 = document.querySelector('.profile__add-button');
 
 const closePopup1 = popup1.querySelector('.popup__closed');
 const closePopup2 = popup2.querySelector('.popup__closed');
-const closePopup3 = popup3.querySelector('.popup__closed');
+const closePopup3 = popup3.querySelector('.popup__closed_image');
 
 const initialCards = [
     {
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         <div class="photo-grid__bottom">
             <h2 class="photo-grid__name">${item.name}</h2>
-            <button class="photo-grid__heart"></button>
+            <button class="photo-grid__heart" onclick="toggleHeart(this)"></button>
         </div>
         
     </li>`
@@ -103,8 +103,6 @@ openPopup1.addEventListener('click', () => {
 openPopup2.addEventListener('click', () => {
     togglePopup2()
 
-    // placeName.value = profileName.textContent
-    // linkName.value = profileDescription.textContent
 });
 
 
@@ -161,6 +159,7 @@ formElement2.addEventListener('submit', formSubmitHandler2);
 
 
 function toggleHeart(heart) {
+
     console.log(heart.classList);
     if (heart.classList.contains('photo-grid__heart_active')) {
         heart.classList.remove('photo-grid__heart_active');
