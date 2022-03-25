@@ -1,7 +1,7 @@
-.popup__content_image {
+.popup__content-image {
   position: relative;
 }
 @media (max-width: 500px) {
-  .popup__content_image {
+  .popup__content-image {
   }
 }

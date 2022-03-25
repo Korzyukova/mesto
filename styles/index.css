@@ -42,10 +42,10 @@
 
 @import url(../blocks/trash/trash.css);
 @import url(../blocks/popup/__image/popup__image.css);
-@import url(../blocks/popup/__image/popup__image_name.css);
-@import url(../blocks/popup/__container/popup__container_image.css);
-@import url(../blocks/popup/__content/poppup__content_image.css);
-@import url(../blocks/popup/__closed/popup__closed_image.css);
+@import url(../blocks/popup/__image/popup__image-name.css);
+@import url(../blocks/popup/__container/popup__container-image.css);
+@import url(../blocks/popup/__content/popup__content-image.css);
+@import url(../blocks/popup/__closed/popup__closed-image.css);
 @import url(../blocks/popup/__image/popup__image_wrap.css);
 @import url(../blocks/body/body.css);
 @import url(../blocks/html/html.css);

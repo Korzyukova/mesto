@@ -17,7 +17,7 @@ const openPopup2 = document.querySelector('.profile__add-button');
 
 const closePopup1 = popup1.querySelector('.popup__closed');
 const closePopup2 = popup2.querySelector('.popup__closed');
-const closePopup3 = popup3.querySelector('.popup__closed_image');
+const closePopup3 = popup3.querySelector('.popup__closed-image');
 
 const initialCards = [
     {
@@ -92,7 +92,7 @@ function togglePopup3(target) {
     popup3.classList.toggle('popup_opened');
 
     document.querySelector('.popup__image').src = target.src;
-    document.querySelector('.popup__image_name').textContent = target.alt;
+    document.querySelector('.popup__image-name').textContent = target.alt;
 }
 
 openPopup1.addEventListener('click', () => {
