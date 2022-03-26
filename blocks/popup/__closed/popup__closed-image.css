@@ -12,12 +12,12 @@
   right: -40px;
   top: -40px;
 }
-.popup__closed_image:hover {
+.popup__closed-image:hover {
   background: url(../../../images/Closehover.png);
   background-position: center;
 }
 @media (max-width: 550px) {
-  .popup__closed_image {
+  .popup__closed-image {
     width: 20px;
     height: 20px;
     right: 0;

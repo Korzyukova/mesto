@@ -10,3 +10,7 @@
   margin-right: 30px;
   cursor: pointer;
 }
+.photo-grid__heart_active:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}

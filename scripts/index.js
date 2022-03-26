@@ -1,23 +1,23 @@
 
 
-let nameInput = document.querySelector('.popup__input_type_name');
-let jobInput = document.querySelector('.popup__input_type_about');
-let profileName = document.querySelector('.profile__name');
-let profileDescription = document.querySelector('.profile__description');
-let placeName = document.querySelector('.popup__input_type_place-name');
-let linkName = document.querySelector('.popup__input_type_link');
+const nameInput = document.querySelector('.popup__input_type_name');
+const jobInput = document.querySelector('.popup__input_type_about');
+const profileName = document.querySelector('.profile__name');
+const profileDescription = document.querySelector('.profile__description');
+const placeName = document.querySelector('.popup__input_type_place-name');
+const linkName = document.querySelector('.popup__input_type_link');
 
 
 
-const popup1 = document.querySelector('#popup1');
-const popup2 = document.querySelector('#popup2');
-const popup3 = document.querySelector('#popup3');
-const openPopup1 = document.querySelector('.profile__edit-button');
-const openPopup2 = document.querySelector('.profile__add-button');
+const profilePopup = document.querySelector('#profilePopup');
+const cardPopup = document.querySelector('#cardPopup');
+const imagePopup = document.querySelector('#imagePopup');
+const openProfilePopup = document.querySelector('.profile__edit-button');
+const openCardPopup = document.querySelector('.profile__add-button');
 
-const closePopup1 = popup1.querySelector('.popup__closed');
-const closePopup2 = popup2.querySelector('.popup__closed');
-const closePopup3 = popup3.querySelector('.popup__closed-image');
+const closeProfilePopup = profilePopup.querySelector('.popup__closed');
+const closeCardPopup = cardPopup.querySelector('.popup__closed');
+const closeImagePopup = imagePopup.querySelector('.popup__closed-image');
 
 const initialCards = [
     {
@@ -48,74 +48,64 @@ const initialCards = [
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    let container = document.querySelector('.photo-grid');
+    const container = document.querySelector('.photo-grid');
 
     initialCards.forEach(function (item, index, array) {
-        let itemX = `<li class="photo-grid__rectangle">
-        <img onclick="deleteItem(this)"  src='./images/trash.png'/ class="trash">
-        <img class="photo-grid__item" src="${item.link}" alt="${item.name}">
-    
-        
-        <div class="photo-grid__bottom">
-            <h2 class="photo-grid__name">${item.name}</h2>
-            <button class="photo-grid__heart" onclick="toggleHeart(this)"></button>
-        </div>
-        
-    </li>`
-        container.insertAdjacentHTML('afterbegin', itemX);
+        container.insertAdjacentElement('afterbegin', createCard(item.name, item.link));
     })
+});
 
-    const openPopup3 = document.querySelectorAll('.photo-grid__item');
-    openPopup3.forEach(function (item) {
-        item.addEventListener('click', () => {
-            togglePopup3(item)
-        });
+function createCard(name, link)
+{
+    const card = document.querySelector('#card').content.querySelector('.photo-grid__rectangle').cloneNode(true);
+
+    card.querySelector('.photo-grid__item').src = link;
+    card.querySelector('.photo-grid__item').alt = name;
+    card.querySelector('.photo-grid__name').textContent = name;
+
+    card.querySelector('.photo-grid__item').addEventListener('click', (item) => {
+        document.querySelector('.popup__image').src = link;
+        document.querySelector('.popup__image-name').textContent = name;
+        openPopup(imagePopup);
     });
+    
+    return card; 
 }
-
-);
 
 function deleteItem(target) {
-    let container = document.querySelector('.photo-grid');
-    container.removeChild(target.parentNode)
+    target.closest('.photo-grid__rectangle').remove();
 }
 
-function togglePopup1() {
-    popup1.classList.toggle('popup_opened');
+function openPopup(popup)
+{
+    popup.classList.toggle('popup_opened');
 }
 
-function togglePopup2() {
-    popup2.classList.toggle('popup_opened');
-};
-
-function togglePopup3(target) {
-    popup3.classList.toggle('popup_opened');
-
-    document.querySelector('.popup__image').src = target.src;
-    document.querySelector('.popup__image-name').textContent = target.alt;
+function closePopup(popup)
+{
+    popup.classList.toggle('popup_opened');
 }
 
-openPopup1.addEventListener('click', () => {
-    togglePopup1()
+
+openProfilePopup.addEventListener('click', () => {
+    openPopup(profilePopup);
     nameInput.value = profileName.textContent
     jobInput.value = profileDescription.textContent
 });
-openPopup2.addEventListener('click', () => {
-    togglePopup2()
-
+openCardPopup.addEventListener('click', () => {
+    
+    openPopup(cardPopup);
 });
 
 
 
+closeProfilePopup.addEventListener('click', function() {closePopup(profilePopup)});
+closeCardPopup.addEventListener('click', function() {closePopup(cardPopup)});
+closeImagePopup.addEventListener('click', function() {closePopup(imagePopup)});
 
-
-closePopup1.addEventListener('click', togglePopup1);
-closePopup2.addEventListener('click', togglePopup2);
-closePopup3.addEventListener('click', togglePopup3);
-
-let formElement1 = document.querySelector('#form1');
-let formElement2 = document.querySelector('#form2');
-let formElement3 = document.querySelector('#form3');
+const formElement1 = document.querySelector('#form1');
+const formElement2 = document.querySelector('#form2');
+const formElement3 = document.querySelector('#form3');
 
 
 function formSubmitHandler1(evt) {
@@ -131,26 +121,17 @@ function formSubmitHandler1(evt) {
 
     profileDescription.textContent = jobInput.value;
 
-    togglePopup1();
+    closePopup(profilePopup);
 }
 
 
 function formSubmitHandler2(evt) {
     evt.preventDefault();
-
     let container = document.querySelector('.photo-grid');
-    let itemX = `<li class="photo-grid__rectangle">
-        <img class="photo-grid__item" src="${linkName.value}" alt="${placeName.value}">
-        <div class="photo-grid__bottom">
-            <h2 class="photo-grid__name">${placeName.value}</h2>
-            <button class="photo-grid__heart"></button>
-        </div>
-        <img onclick="deleteItem(this)" src='./images/trash.png' class="trash">
-    </li>`;
-
-    container.insertAdjacentHTML('afterbegin', itemX);
-
-    togglePopup2();
+    container.insertAdjacentElement('afterbegin', createCard(placeName.value, linkName.value));
+    closePopup(cardPopup);
+    linkName.value = '';
+    placeName.value = '';
 }
 
 formElement1.addEventListener('submit', formSubmitHandler1);
@@ -160,11 +141,7 @@ formElement2.addEventListener('submit', formSubmitHandler2);
 
 function toggleHeart(heart) {
 
-    console.log(heart.classList);
-    if (heart.classList.contains('photo-grid__heart_active')) {
-        heart.classList.remove('photo-grid__heart_active');
-    } else {
-        heart.classList.add('photo-grid__heart_active');
-    }
+    heart.classList.toggle('photo-grid__heart_active');
+
 }
 
