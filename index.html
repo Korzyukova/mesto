@@ -48,7 +48,7 @@
         </div>
 
         <div class="popup" id="profilePopup">
-            <form class="popup__container popup__content" id="form1">
+            <form class="popup__container popup__content" id="formProfile">
                 <button class="popup__closed" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input class="popup__input popup__input_type_name" type="text" name="name" placeholder="Введите имя">
@@ -58,7 +58,7 @@
             </form>
         </div>
         <div class="popup" id="cardPopup">
-            <form class="popup__container popup__content" id="form2">
+            <form class="popup__container popup__content" id="formCard">
                 <button class="popup__closed" type="button"></button>
                 <h2 class="popup__title">Новое место</h2>
                 <input class="popup__input popup__input_type_place-name" type="text" name="name" placeholder="Название">
@@ -78,19 +78,19 @@
             </div>
 
         </div>
-        <script src="./scripts/index.js"></script>
     </div>
 
     <template id="card">
         <li class="photo-grid__rectangle">
-            <img onclick="deleteItem(this)"  src='./images/trash.png'/ class="trash">
+            <img src='./images/trash.png'/ class="trash">
             <img class="photo-grid__item" src="${link}" alt="${name}">
             <div class="photo-grid__bottom">
                 <h2 class="photo-grid__name">${name}</h2>
-                <button class="photo-grid__heart" onclick="toggleHeart(this)"></button>
+                <button class="photo-grid__heart"></button>
             </div>  
         </li>`
     </template>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>

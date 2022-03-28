@@ -12,17 +12,21 @@ const linkName = document.querySelector('.popup__input_type_link');
 const profilePopup = document.querySelector('#profilePopup');
 const cardPopup = document.querySelector('#cardPopup');
 const imagePopup = document.querySelector('#imagePopup');
-const openProfilePopup = document.querySelector('.profile__edit-button');
-const openCardPopup = document.querySelector('.profile__add-button');
+const profilePopupOpen = document.querySelector('.profile__edit-button');
+const cardPopupOpen = document.querySelector('.profile__add-button');
 
-const closeProfilePopup = profilePopup.querySelector('.popup__closed');
-const closeCardPopup = cardPopup.querySelector('.popup__closed');
-const closeImagePopup = imagePopup.querySelector('.popup__closed-image');
+const profilePopupClose = profilePopup.querySelector('.popup__closed');
+const cardPopupClose = cardPopup.querySelector('.popup__closed');
+const imagePopupClose = imagePopup.querySelector('.popup__closed-image');
+
+const cardTemplate = document.querySelector('#card').content.querySelector('.photo-grid__rectangle');
+
+const containerPhotoGrid = document.querySelector('.photo-grid');
 
 const initialCards = [
     {
         name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',  
     },
     {
         name: 'Челябинская область',
@@ -57,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function createCard(name, link)
 {
-    const card = document.querySelector('#card').content.querySelector('.photo-grid__rectangle').cloneNode(true);
+    const card = cardTemplate.cloneNode(true);
 
     card.querySelector('.photo-grid__item').src = link;
     card.querySelector('.photo-grid__item').alt = name;
@@ -65,50 +69,57 @@ function createCard(name, link)
 
     card.querySelector('.photo-grid__item').addEventListener('click', (item) => {
         document.querySelector('.popup__image').src = link;
+        document.querySelector('.popup__image').alt = name;
         document.querySelector('.popup__image-name').textContent = name;
         openPopup(imagePopup);
     });
+
+    card.querySelector('.photo-grid__heart').addEventListener('click', (e) => {
+        e.target.classList.toggle('photo-grid__heart_active');
+    });
+
+    card.querySelector('.trash').addEventListener('click', (e) => {
+        e.target.closest('.photo-grid__rectangle').remove();
+    });
+
+    
     
     return card; 
 }
 
-function deleteItem(target) {
-    target.closest('.photo-grid__rectangle').remove();
-}
-
 function openPopup(popup)
 {
-    popup.classList.toggle('popup_opened');
+    popup.classList.add('popup_opened');
 }
 
 function closePopup(popup)
 {
-    popup.classList.toggle('popup_opened');
+    popup.classList.remove('popup_opened');
 }
 
 
-openProfilePopup.addEventListener('click', () => {
+profilePopupOpen.addEventListener('click', () => {
     openPopup(profilePopup);
     nameInput.value = profileName.textContent
     jobInput.value = profileDescription.textContent
 });
-openCardPopup.addEventListener('click', () => {
+cardPopupOpen.addEventListener('click', () => {
     
     openPopup(cardPopup);
 });
 
 
 
-closeProfilePopup.addEventListener('click', function() {closePopup(profilePopup)});
-closeCardPopup.addEventListener('click', function() {closePopup(cardPopup)});
-closeImagePopup.addEventListener('click', function() {closePopup(imagePopup)});
+profilePopupClose.addEventListener('click', function() {closePopup(profilePopup)});
+cardPopupClose.addEventListener('click', function() {closePopup(cardPopup)});
+imagePopupClose.addEventListener('click', function() {closePopup(imagePopup)});
 
-const formElement1 = document.querySelector('#form1');
-const formElement2 = document.querySelector('#form2');
-const formElement3 = document.querySelector('#form3');
+const formElementProfile = document.querySelector('#formProfile');
+const formElementCard = document.querySelector('#formCard');
+const formElementPicture = document.querySelector('#formPicture');
 
 
-function formSubmitHandler1(evt) {
+function formSubmitHandlerProfile(evt) {
     console.log('event=', evt)
     evt.preventDefault();
     console.log('nameInput=', nameInput);
@@ -125,23 +136,16 @@ function formSubmitHandler1(evt) {
 }
 
 
-function formSubmitHandler2(evt) {
+function formSubmitHandlerCard(evt) {
     evt.preventDefault();
-    let container = document.querySelector('.photo-grid');
-    container.insertAdjacentElement('afterbegin', createCard(placeName.value, linkName.value));
+    containerPhotoGrid.insertAdjacentElement('afterbegin', createCard(placeName.value, linkName.value));
     closePopup(cardPopup);
     linkName.value = '';
     placeName.value = '';
 }
 
-formElement1.addEventListener('submit', formSubmitHandler1);
-formElement2.addEventListener('submit', formSubmitHandler2);
+formElementProfile.addEventListener('submit', formSubmitHandlerProfile);
+formElementCard.addEventListener('submit', formSubmitHandlerCard);
 
 
-
-function toggleHeart(heart) {
-
-    heart.classList.toggle('photo-grid__heart_active');
-
-}
 
