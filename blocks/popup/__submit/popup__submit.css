@@ -33,3 +33,9 @@
 .popup__submit:hover {
   opacity: 0.8;
 }
+.popup__submit:disabled {
+  border: 1px solid black;
+  background-color: #ffffff;
+  color: black;
+  opacity: 0.6;
+  }

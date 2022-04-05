@@ -12,6 +12,7 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
+
 @media (max-width: 320px) {
   .popup__input {
     margin: 75px 22px 0px;

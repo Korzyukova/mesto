@@ -94,6 +94,7 @@ function openPopup(popup)
 
 function closePopup(popup)
 {
+
     popup.classList.remove('popup_opened');
 }
 
@@ -120,19 +121,7 @@ const formElementPicture = document.querySelector('#formPicture');
 
 
 function formSubmitHandlerProfile(evt) {
-    console.log('event=', evt)
-    evt.preventDefault();
-    console.log('nameInput=', nameInput);
-    console.log('jobInput=', jobInput);
 
-
-
-
-    profileName.textContent = nameInput.value;
-
-    profileDescription.textContent = jobInput.value;
-
-    closePopup(profilePopup);
 }
 
 
@@ -144,8 +133,145 @@ function formSubmitHandlerCard(evt) {
     placeName.value = '';
 }
 
-formElementProfile.addEventListener('submit', formSubmitHandlerProfile);
+//formElementProfile.addEventListener('submit', formSubmitHandlerProfile);
+
+
 formElementCard.addEventListener('submit', formSubmitHandlerCard);
 
 
 
+
+
+//const formElementProfile = document.querySelector('#formProfile');
+const inputSelector = formElementProfile.querySelectorAll('.popup__input');
+
+// Функция, которая добавляет класс с ошибкой
+const showInputError = (element) => {
+  element.classList.add('popup__input_type_error');
+
+  const formErrorSpan = document.querySelector(`.${element.id}_error`);
+  formErrorSpan.classList.add('span_show');
+
+  const nameInputElement = document.getElementById('nameInput')
+  const aboutInputElement = document.getElementById('aboutInput')
+  const isNameInputValid = nameInputElement.validity.valid;
+  const isAboutInputValid = aboutInputElement.validity.valid;
+
+  if (!isNameInputValid || !isAboutInputValid) {
+    document.querySelector('.popup__submit').disabled = true;
+  }
+};
+
+// Функция, которая удаляет класс с ошибкой
+const hideInputError = (element) => {
+    
+  element.classList.remove('popup__input_type_error');
+
+  const formErrorSpan = document.querySelector(`.${element.id}_error`);
+  formErrorSpan.classList.remove('span_show');
+  
+  const nameInputElement = document.getElementById('nameInput')
+  const aboutInputElement = document.getElementById('aboutInput')
+  const isNameInputValid = nameInputElement.validity.valid;
+  const isAboutInputValid = aboutInputElement.validity.valid;
+
+  if (isNameInputValid && isAboutInputValid) {
+    document.querySelector('.popup__submit').disabled = false;
+  }
+};
+
+// Функция, которая проверяет валидность поля
+const isValid = (event) => {
+    console.log(event);
+        if (!event.target.validity.valid) {
+            // Если поле не проходит валидацию, покажем ошибку
+            showInputError(event.target);
+          } else {
+            // Если проходит, скроем
+            hideInputError(event.target);
+          }
+};
+ 
+formElementProfile.addEventListener('submit', function (evt) {
+  // Отменим стандартное поведение по сабмиту
+
+let valid = true;
+
+  inputSelector.forEach(function (item) {
+
+    if (!item.validity.valid)
+    {
+        valid = false;
+    }
+});
+
+if (valid)
+{
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = jobInput.value;
+  closePopup(profilePopup);
+}
+  
+
+  evt.preventDefault();
+});
+
+// Вызовем функцию isValid на каждый ввод символа
+
+
+inputSelector.forEach(function (item) {
+    item.addEventListener('input', isValid);
+});
+
+
+
+const formInput = formElementProfile.querySelector('.popup__input');
+const formError = formElementProfile.querySelector(`.${nameInput.id}_error`);
+
+const formProfileElement = document.getElementById('formProfile')
+formProfileElement.addEventListener('click', function(event) {
+    event.stopPropagation()
+})
+
+const profilePopupOverlay = document.getElementById('profilePopup')
+profilePopupOverlay.addEventListener('click', function(event) {
+    closePopup(profilePopupOverlay)
+});
+
+// // включение валидации вызовом enableValidation
+// // все настройки передаются при вызове
+
+// // enableValidation({
+// //     formSelector: '.popup__form',
+// //     inputSelector: '.popup__input',
+// //     submitButtonSelector: '.popup__button',
+// //     inactiveButtonClass: 'popup__button_disabled',
+// //     inputErrorClass: 'popup__input_type_error',
+// //     errorClass: 'popup__error_visible'
+// //   });
+
+
+
+
+
+
+
+
+
+
+// function getName() {
+//     const firstName = [
+//         'Masha',
+//         'Katya',
+//         'Tanya',
+//         'Yulya'
+//     ];
+//     const lastName = [
+//         'Ivanova',
+//         'Petrova',
+//         'Sidorova',
+//         'Korzyukova'
+//     ];
+
+//     return {name:pick(firstName),lastname:pick(lastName)};
+// };
