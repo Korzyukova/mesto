@@ -118,9 +118,21 @@ const formElementCard = document.querySelector('#formCard');
 const formElementPicture = document.querySelector('#formPicture');
 
 
-function formSubmitHandlerProfile(evt) {
-
-}
+    function formSubmitHandlerProfile(evt) {
+        console.log('event=', evt)
+        evt.preventDefault();
+        console.log('nameInput=', nameInput);
+        console.log('jobInput=', jobInput);
+    
+    
+    
+        profileName.textContent = nameInput.value;
+    
+        profileDescription.textContent = jobInput.value;
+    
+        closePopup(profilePopup);
+    }
+    
 
 
 function formSubmitHandlerCard(evt) {
@@ -133,4 +145,5 @@ function formSubmitHandlerCard(evt) {
 
 
 formElementCard.addEventListener('submit', formSubmitHandlerCard);
+formElementProfile.addEventListener('submit', formSubmitHandlerProfile);
 

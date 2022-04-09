@@ -5,7 +5,7 @@
  const showInputError = (element) => {
      element.classList.add('popup__input_type_error');
  
-     const formErrorSpan = document.querySelector(`.${element.id}_error`);
+     const formErrorSpan = document.querySelector(`.${element.id}-error`);
      formErrorSpan.classList.add('span_show');
  
      const nameInputElement = document.getElementById('nameInput')
@@ -32,7 +32,7 @@
  
      element.classList.remove('popup__input_type_error');
  
-     const formErrorSpan = document.querySelector(`.${element.id}_error`);
+     const formErrorSpan = document.querySelector(`.${element.id}-error`);
      formErrorSpan.classList.remove('span_show');
  
      const nameInputElement = document.getElementById('nameInput')
@@ -84,7 +84,7 @@
      }
  
  
-     evt.preventDefault();
+     evt.preventDefault();    
  });
  
  
