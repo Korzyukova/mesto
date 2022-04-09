@@ -55,18 +55,20 @@
                 <span class="nameInput_error span">Необходимо заполнить данное поле</span>
                 <input id="aboutInput" class="popup__input popup__input_type_about" type="text" name="about" placeholder="Кто Вы?" minlength="2" maxlength="200" required>
                 <span class="aboutInput_error span">Необходимо заполнить данное поле</span>
-                <button class="popup__submit" type="submit">Сохранить</button>
+                <button class="popup__submit" id = "submitProfile" type="submit">Сохранить</button>
 
             </form>
         </div>
         <div class="popup" id="cardPopup">
-            <form class="popup__container popup__content" id="formCard">
+            <form class="popup__container popup__content" id="formCard" novalidate>
                 <button class="popup__closed" type="button"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <input class="popup__input popup__input_type_place-name" type="text" name="name" placeholder="Название">
-                <input class="popup__input popup__input_type_link" type="text" name="link"
-                    placeholder="Ссылка на картинку">
-                <button class="popup__submit" type="submit">Сохранить</button>
+                <input id = "placeInput" class="popup__input popup__input_type_place-name" type="text" name="name" placeholder="Название" minlength="2" maxlength="30" required>
+                <span class= "placeInput_error span">Вы пропустили это поле</span>
+                <input id = "linkInput" class="popup__input popup__input_type_link" type="url" name="link"
+                    placeholder="Ссылка на картинку" required>
+                <span class="linkInput_error span">Введите адрес сайта</span>
+                <button class="popup__submit" id = "submitCard" type="submit">Сохранить</button>
 
             </form>
 

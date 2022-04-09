@@ -115,6 +115,9 @@ profilePopupClose.addEventListener('click', function() {closePopup(profilePopup)
 cardPopupClose.addEventListener('click', function() {closePopup(cardPopup)});
 imagePopupClose.addEventListener('click', function() {closePopup(imagePopup)});
 
+
+//ВАЛИДАЦИЯ
+
 const formElementProfile = document.querySelector('#formProfile');
 const formElementCard = document.querySelector('#formCard');
 const formElementPicture = document.querySelector('#formPicture');
@@ -133,17 +136,12 @@ function formSubmitHandlerCard(evt) {
     placeName.value = '';
 }
 
-//formElementProfile.addEventListener('submit', formSubmitHandlerProfile);
-
 
 formElementCard.addEventListener('submit', formSubmitHandlerCard);
 
 
-
-
-
 //const formElementProfile = document.querySelector('#formProfile');
-const inputSelector = formElementProfile.querySelectorAll('.popup__input');
+const inputSelector = document.querySelectorAll('.popup__input');
 
 // Функция, которая добавляет класс с ошибкой
 const showInputError = (element) => {
@@ -154,12 +152,21 @@ const showInputError = (element) => {
 
   const nameInputElement = document.getElementById('nameInput')
   const aboutInputElement = document.getElementById('aboutInput')
+  const placeInputElement = document.getElementById('placeInput')
+  const linkInputElement = document.getElementById('linkInput')
+  
   const isNameInputValid = nameInputElement.validity.valid;
   const isAboutInputValid = aboutInputElement.validity.valid;
+  const isPlaceInputValid = placeInputElement.validity.valid;
+  const isLinkInputValid = linkInputElement.validity.valid;
 
   if (!isNameInputValid || !isAboutInputValid) {
-    document.querySelector('.popup__submit').disabled = true;
+    document.querySelector('#submitProfile').disabled = true;
   }
+  
+   if (!isPlaceInputValid || !isLinkInputValid){
+        document.querySelector('#submitCard').disabled = true;
+   }
 };
 
 // Функция, которая удаляет класс с ошибкой
@@ -172,11 +179,19 @@ const hideInputError = (element) => {
   
   const nameInputElement = document.getElementById('nameInput')
   const aboutInputElement = document.getElementById('aboutInput')
+  const placeInputElement = document.getElementById('placeInput')
+  const linkInputElement = document.getElementById('linkInput')
+  
   const isNameInputValid = nameInputElement.validity.valid;
   const isAboutInputValid = aboutInputElement.validity.valid;
+  const isPlaceInputValid = placeInputElement.validity.valid;
+  const isLinkInputValid = linkInputElement.validity.valid;
 
-  if (isNameInputValid && isAboutInputValid) {
-    document.querySelector('.popup__submit').disabled = false;
+  if ((isNameInputValid && isAboutInputValid) || (isPlaceInputValid && isLinkInputValid)) {
+    const buttons = document.querySelectorAll('.popup__submit');
+    buttons.forEach(function (item) {
+        item.disabled = false;
+    });
   }
 };
 
@@ -216,6 +231,7 @@ if (valid)
   evt.preventDefault();
 });
 
+
 // Вызовем функцию isValid на каждый ввод символа
 
 
@@ -223,7 +239,7 @@ inputSelector.forEach(function (item) {
     item.addEventListener('input', isValid);
 });
 
-
+//const formElementCard = document.querySelector('#formCard');
 
 const formInput = formElementProfile.querySelector('.popup__input');
 const formError = formElementProfile.querySelector(`.${nameInput.id}_error`);
@@ -233,11 +249,40 @@ formProfileElement.addEventListener('click', function(event) {
     event.stopPropagation()
 })
 
-const profilePopupOverlay = document.getElementById('profilePopup')
-profilePopupOverlay.addEventListener('click', function(event) {
-    closePopup(profilePopupOverlay)
+//const formInput = formElementProfile.querySelector('.popup__input');
+//const formError = formElementProfile.querySelector(`.${nameInput.id}_error`);
+
+const profilePopupOverlayProfile = document.getElementById('profilePopup')
+profilePopupOverlayProfile.addEventListener('click', function(event) {
+    closePopup(profilePopupOverlayProfile)
 });
 
+
+const formCardElement = document.getElementById('formCard')
+formCardElement.addEventListener('click', function(event) {
+    event.stopPropagation()
+})
+
+const profilePopupOverlayCard = document.getElementById('cardPopup')
+profilePopupOverlayCard.addEventListener('click', function(event) {
+    closePopup(profilePopupOverlayCard)
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closePopup(profilePopupOverlayProfile)
+    hideModal()
+    }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closePopup(profilePopupOverlayCard)
+        hideModal()
+        }
+        });
+
+        
 // // включение валидации вызовом enableValidation
 // // все настройки передаются при вызове
 
