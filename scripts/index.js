@@ -17,7 +17,7 @@ const cardPopupOpen = document.querySelector('.profile__add-button');
 
 const profilePopupClose = profilePopup.querySelector('.popup__closed');
 const cardPopupClose = cardPopup.querySelector('.popup__closed');
-const imagePopupClose = imagePopup.querySelector('.popup__closed-image');
+const imagePopupClose = imagePopup.querySelector('.popup__closed');
 
 const cardTemplate = document.querySelector('#card').content.querySelector('.photo-grid__rectangle');
 
@@ -86,13 +86,21 @@ function createCard(name, link) {
     return card;
 }
 
+function handleEscape(e)
+{
+   if (e.key === 'Escape') {
+       closePopup(document.querySelector('.popup_opened'))
+   }
+}
+
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', handleEscape);
 }
 
 function closePopup(popup) {
-
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', handleEscape)
 }
 
 
@@ -146,4 +154,41 @@ function formSubmitHandlerCard(evt) {
 
 formElementCard.addEventListener('submit', formSubmitHandlerCard);
 formElementProfile.addEventListener('submit', formSubmitHandlerProfile);
+
+ 
+
+const formProfileElement = document.getElementById('formProfile')
+formProfileElement.addEventListener('click', function (event) {
+    event.stopPropagation()
+})
+
+const formCardElement = document.getElementById('formCard')
+formCardElement.addEventListener('click', function (event) {
+    event.stopPropagation()
+})
+
+const formImageElement = document.getElementById('imagePopup')
+formImageElement.addEventListener('click', function (event) {
+    event.stopPropagation()
+})
+
+
+const profilePopupOverlayProfile = document.getElementById('profilePopup')
+profilePopupOverlayProfile.addEventListener('click', function (event) {
+    closePopup(profilePopupOverlayProfile)
+});
+
+
+
+const profilePopupOverlayCard = document.getElementById('cardPopup')
+profilePopupOverlayCard.addEventListener('click', function (event) {
+    closePopup(profilePopupOverlayCard)
+});
+
+
+
+const profilePopupOverlayImage = document.getElementById('imagePopup')
+profilePopupOverlayImage.addEventListener('click', function (event) {
+    closePopup(profilePopupOverlayImage)
+});
 

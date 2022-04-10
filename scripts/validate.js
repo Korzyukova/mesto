@@ -98,41 +98,6 @@
  
  const formInput = formElementProfile.querySelector('.popup__input');
  const formError = formElementProfile.querySelector(`.${nameInput.id}_error`);
- 
- const formProfileElement = document.getElementById('formProfile')
- formProfileElement.addEventListener('click', function (event) {
-     event.stopPropagation()
- })
- 
- 
- const profilePopupOverlayProfile = document.getElementById('profilePopup')
- profilePopupOverlayProfile.addEventListener('click', function (event) {
-     closePopup(profilePopupOverlayProfile)
- });
- 
- 
- const formCardElement = document.getElementById('formCard')
- formCardElement.addEventListener('click', function (event) {
-     event.stopPropagation()
- })
- 
- const profilePopupOverlayCard = document.getElementById('cardPopup')
- profilePopupOverlayCard.addEventListener('click', function (event) {
-     closePopup(profilePopupOverlayCard)
- });
- 
- document.addEventListener('keydown', function (e) {
-     if (e.key === 'Escape') {
-         closePopup(profilePopupOverlayProfile)
-         hideModal()
-     }
- });
- 
- document.addEventListener('keydown', function (e) {
-     if (e.key === 'Escape') {
-         closePopup(profilePopupOverlayCard)
-         hideModal()
-     }
- });
+
  
  
