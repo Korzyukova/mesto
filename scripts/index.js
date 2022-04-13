@@ -108,6 +108,8 @@ profilePopupOpen.addEventListener('click', () => {
     openPopup(profilePopup);
     nameInput.value = profileName.textContent
     jobInput.value = profileDescription.textContent
+    nameInput.dispatchEvent(new Event('input'));
+    jobInput.dispatchEvent(new Event('input'));
 });
 cardPopupOpen.addEventListener('click', () => {
 
@@ -126,7 +128,7 @@ const formElementCard = document.querySelector('#formCard');
 const formElementPicture = document.querySelector('#formPicture');
 
 
-    function formSubmitHandlerProfile(evt) {
+    function submitFormHandlerProfile(evt) {
         console.log('event=', evt)
         evt.preventDefault();
         console.log('nameInput=', nameInput);
@@ -143,7 +145,7 @@ const formElementPicture = document.querySelector('#formPicture');
     
 
 
-function formSubmitHandlerCard(evt) {
+function submitFormHandlerCard(evt) {
     evt.preventDefault();
     containerPhotoGrid.insertAdjacentElement('afterbegin', createCard(placeName.value, linkName.value));
     closePopup(cardPopup);
@@ -152,8 +154,8 @@ function formSubmitHandlerCard(evt) {
 }
 
 
-formElementCard.addEventListener('submit', formSubmitHandlerCard);
-formElementProfile.addEventListener('submit', formSubmitHandlerProfile);
+formElementCard.addEventListener('submit', submitFormHandlerCard);
+formElementProfile.addEventListener('submit', submitFormHandlerProfile);
 
  
 
