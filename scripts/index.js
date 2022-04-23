@@ -23,6 +23,13 @@ const cardTemplate = document.querySelector('#card').content.querySelector('.pho
 
 const containerPhotoGrid = document.querySelector('.photo-grid');
 
+const popupImage  = document.querySelector('.popup__image');
+const imageName = document.querySelector('.popup__image-name');
+
+const formElementProfile = document.querySelector('#formProfile');
+const formElementCard = document.querySelector('#formCard');
+const formElementPicture = document.querySelector('#formPicture');
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -61,15 +68,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function createCard(name, link) {
     const card = cardTemplate.cloneNode(true);
-
     card.querySelector('.photo-grid__item').src = link;
     card.querySelector('.photo-grid__item').alt = name;
     card.querySelector('.photo-grid__name').textContent = name;
 
     card.querySelector('.photo-grid__item').addEventListener('click', (item) => {
-        document.querySelector('.popup__image').src = link;
-        document.querySelector('.popup__image').alt = name;
-        document.querySelector('.popup__image-name').textContent = name;
+        popupImage.src = link;
+        popupImage.alt = name;
+        imageName.textContent = name;
         openPopup(imagePopup);
     });
 
@@ -121,11 +127,6 @@ cardPopupOpen.addEventListener('click', () => {
 profilePopupClose.addEventListener('click', function () { closePopup(profilePopup) });
 cardPopupClose.addEventListener('click', function () { closePopup(cardPopup) });
 imagePopupClose.addEventListener('click', function () { closePopup(imagePopup) });
-
-
-const formElementProfile = document.querySelector('#formProfile');
-const formElementCard = document.querySelector('#formCard');
-const formElementPicture = document.querySelector('#formPicture');
 
 
     function submitFormHandlerProfile(evt) {
