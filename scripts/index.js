@@ -129,7 +129,7 @@ const formElementPicture = document.querySelector('#formPicture');
 
 
     function submitFormHandlerProfile(evt) {
-        console.log('event=', evt)
+        console.log('event=', evt),
         evt.preventDefault();
         console.log('nameInput=', nameInput);
         console.log('jobInput=', jobInput);
@@ -151,6 +151,8 @@ function submitFormHandlerCard(evt) {
     closePopup(cardPopup);
     linkName.value = '';
     placeName.value = '';
+    linkName.dispatchEvent(new Event('input'));
+    placeName.dispatchEvent(new Event('input'));
 }
 
 
@@ -159,38 +161,37 @@ formElementProfile.addEventListener('submit', submitFormHandlerProfile);
 
  
 
-const formProfileElement = document.getElementById('formProfile')
+const formProfileElement = document.querySelector('#formProfile')
 formProfileElement.addEventListener('click', function (event) {
     event.stopPropagation()
 })
 
-const formCardElement = document.getElementById('formCard')
+const formCardElement = document.querySelector('#formCard')
 formCardElement.addEventListener('click', function (event) {
     event.stopPropagation()
 })
 
-const formImageElement = document.getElementById('imagePopup')
+const formImageElement = document.querySelector('#imagePopup')
 formImageElement.addEventListener('click', function (event) {
     event.stopPropagation()
 })
 
 
-const profilePopupOverlayProfile = document.getElementById('profilePopup')
+const profilePopupOverlayProfile = document.querySelector('#profilePopup')
 profilePopupOverlayProfile.addEventListener('click', function (event) {
     closePopup(profilePopupOverlayProfile)
 });
 
 
 
-const profilePopupOverlayCard = document.getElementById('cardPopup')
+const profilePopupOverlayCard = document.querySelector('#cardPopup')
 profilePopupOverlayCard.addEventListener('click', function (event) {
     closePopup(profilePopupOverlayCard)
 });
 
 
 
-const profilePopupOverlayImage = document.getElementById('imagePopup')
+const profilePopupOverlayImage = document.querySelector('#imagePopup')
 profilePopupOverlayImage.addEventListener('click', function (event) {
     closePopup(profilePopupOverlayImage)
 });
-
