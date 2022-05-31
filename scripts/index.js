@@ -91,7 +91,7 @@ function createCard(name, link) {
 
     return card;
 }
-
+// тут мы кнопкой Escape закрываем попапину
 function handleEscape(e)
 {
    if (e.key === 'Escape') {
