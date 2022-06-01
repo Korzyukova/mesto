@@ -1,4 +1,49 @@
 
+class Card {
+    constructor(name, link, template){
+        this.name = name;
+        this.link = link;
+ 
+        const cardTemplate = document.querySelector(template).content.querySelector('.photo-grid__rectangle');
+ 
+        this.card = cardTemplate.cloneNode(true);
+        this.card.querySelector('.photo-grid__item').src = link;
+        this.card.querySelector('.photo-grid__item').alt = name;
+        this.card.querySelector('.photo-grid__name').textContent = name;
+        
+        this._createClickHandler();
+        this._createDeleteHandler();
+        this._createHeartHandler();
+    }
+
+    _createClickHandler()
+    {
+     this.card.querySelector('.photo-grid__item').addEventListener('click', (item) => {
+         popupImage.src = this.link;
+         popupImage.alt = this.name;
+         imageName.textContent = this.name;
+         openPopup(imagePopup);
+     });
+    }
+ 
+    _createDeleteHandler()
+    {
+     this.card.querySelector('.trash').addEventListener('click', (e) => {
+         e.target.closest('.photo-grid__rectangle').remove();
+     });
+    }
+    _createHeartHandler()
+    {
+     this.card.querySelector('.photo-grid__heart').addEventListener('click', (e) => {
+         e.target.classList.toggle('photo-grid__heart_active');
+     });
+    }
+ 
+    getCard()
+    {
+        return this.card;
+    }
+ }
 
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_about');
@@ -28,7 +73,7 @@ const imageName = document.querySelector('.popup__image-name');
 
 const formElementProfile = document.querySelector('#formProfile');
 const formElementCard = document.querySelector('#formCard');
-const formElementPicture = document.querySelector('#formPicture');
+
 
 const initialCards = [
     {
@@ -61,11 +106,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const container = document.querySelector('.photo-grid');
 
-    initialCards.forEach(function (item, index, array) {
+    /*
+    initialCards.forEach(function (item, index, array) {        
         container.insertAdjacentElement('afterbegin', createCard(item.name, item.link));
+    })*/
+    
+
+    initialCards.forEach(function (item, index, array) {
+        let card = new Card(item.name, item.link, '#card');
+        
+        container.insertAdjacentElement('afterbegin', card.getCard());
     })
 });
 
+/*
 function createCard(name, link) {
     const card = cardTemplate.cloneNode(true);
     card.querySelector('.photo-grid__item').src = link;
@@ -91,13 +145,21 @@ function createCard(name, link) {
 
     return card;
 }
+
+*/
+
+
+
+
 // тут мы кнопкой Escape закрываем попапину
+
 function handleEscape(e)
 {
    if (e.key === 'Escape') {
        closePopup(document.querySelector('.popup_opened'))
    }
 }
+
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -106,7 +168,7 @@ function openPopup(popup) {
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', handleEscape)
+    document.removeEventListener('keydown', handleEscape);
 }
 
 
@@ -148,7 +210,7 @@ imagePopupClose.addEventListener('click', function () { closePopup(imagePopup) }
 
 function submitFormHandlerCard(evt) {
     evt.preventDefault();
-    containerPhotoGrid.insertAdjacentElement('afterbegin', createCard(placeName.value, linkName.value));
+    containerPhotoGrid.insertAdjacentElement('afterbegin', (new Card(placeName.value, linkName.value, '#card')).getCard());
     closePopup(cardPopup);
     linkName.value = '';
     placeName.value = '';

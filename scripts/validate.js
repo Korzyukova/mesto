@@ -91,3 +91,11 @@ const isValid = (formElement, inputElement, settings) => {
     }
   };
 
+class FormValidator
+{
+  constructor (settings, element)
+  {}
+  enableValidation()
+  {}
+
+}
