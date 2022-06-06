@@ -1,9 +1,62 @@
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
+export class FormValidator
+{
+  constructor (settings, formElement){
+    this.settings = settings;
+    this.formElement = formElement;
+
+     // Найдём все формы с указанным классом в DOM,
+    // сделаем из них массив методом Array.from
+    //const formList = Array.from(document.querySelectorAll(`.${settings.formSelector}`));
+    // Переберём полученную коллекцию
+    //formList.forEach((formElement) => {
+      formElement.addEventListener('submit', (evt) => {
+        // У каждой формы отменим стандартное поведение
+        evt.preventDefault();
+      });
+  
+      // Для каждой формы вызовем функцию setEventListeners,
+      // передав ей элемент формы
+      this._setEventListeners(formElement, settings);
+    //});
+  }
+
+_setEventListeners(formElement) {
+  // Находим все поля внутри формы,
+  // сделаем из них массив методом Array.from
+  const inputList = Array.from(formElement.querySelectorAll(`.${this.settings.inputSelector}`));
+  const buttonElement = formElement.querySelector(`.${this.settings.submitButtonSelector}`)
+  // Обойдём все элементы полученной коллекции
+  inputList.forEach((inputElement) => {
+    // каждому полю добавим обработчик события input
+    inputElement.addEventListener('input', () => {
+      // Внутри колбэка вызовем isValid,
+      // передав ей форму и проверяемый элемент
+      this._isValid(formElement, inputElement, this.settings);
+      //this.isValid(inputElement)
+      enableDisableSaveButton(buttonElement, inputList)
+    });
+  });
+  
+};
+
+_isValid(inputElement, formElement)
+  {
+      if (!inputElement.validity.valid) {
+        // showInputError теперь получает параметром форму, в которой
+        // находится проверяемое поле, и само это поле
+        showInputError(formElement, inputElement, inputElement.validationMessage, this.settings);
+      } else {
+        // hideInputError теперь получает параметром форму, в которой
+        // находится проверяемое поле, и само это поле
+        hideInputError(formElement, inputElement, this.settings);
+      }
+  }
+}
 
 
-
-const enableValidation = (settings) => {
+export const enableValidation = (settings) => {
     // Найдём все формы с указанным классом в DOM,
     // сделаем из них массив методом Array.from
     const formList = Array.from(document.querySelectorAll(`.${settings.formSelector}`));
@@ -21,7 +74,7 @@ const enableValidation = (settings) => {
 };
 
 // фукция enable/disable Save button
-const enableDisableSaveButton = (buttonElement, inputList) => {
+export const enableDisableSaveButton = (buttonElement, inputList) => {
   if (inputList.some(el => !el.validity.valid)) {
     // если есть хотя бы одно поле, не прошедшее валидацию, кнопка будет неактивна
     buttonElement.disabled = true;
@@ -30,7 +83,7 @@ const enableDisableSaveButton = (buttonElement, inputList) => {
   }
 }
 
-const setEventListeners = (formElement, settings) => {
+export const setEventListeners = (formElement, settings) => {
     // Находим все поля внутри формы,
     // сделаем из них массив методом Array.from
     const inputList = Array.from(formElement.querySelectorAll(`.${settings.inputSelector}`));
@@ -47,7 +100,7 @@ const setEventListeners = (formElement, settings) => {
     });
 };
   
-const showInputError = (formElement, inputElement, errorMessage, settings) => {
+export const showInputError = (formElement, inputElement, errorMessage, settings) => {
     // Находим элемент ошибки внутри самой функции
     const errorElement = inputElement.nextElementSibling;
        // Остальной код такой же
@@ -56,7 +109,7 @@ const showInputError = (formElement, inputElement, errorMessage, settings) => {
     errorElement.classList.add(settings.errorClass);
   };
   
-  const hideInputError = (formElement, inputElement, settings) => {
+  export const hideInputError = (formElement, inputElement, settings) => {
     // Находим элемент ошибки
     const errorElement = inputElement.nextElementSibling;
     // Остальной код такой же
@@ -79,7 +132,7 @@ enableValidation({
 // Функция isValid теперь принимает formElement и inputElement,
 // а не берёт их из внешней области видимости
 
-const isValid = (formElement, inputElement, settings) => {
+export const isValid = (formElement, inputElement, settings) => {
     if (!inputElement.validity.valid) {
       // showInputError теперь получает параметром форму, в которой
       // находится проверяемое поле, и само это поле
@@ -90,12 +143,4 @@ const isValid = (formElement, inputElement, settings) => {
       hideInputError(formElement, inputElement, settings);
     }
   };
-
-class FormValidator
-{
-  constructor (settings, element)
-  {}
-  enableValidation()
-  {}
-
-}
+  
