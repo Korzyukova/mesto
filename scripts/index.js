@@ -1,6 +1,8 @@
 
 import Card from './card.js';
-import {FormValidator, enableValidation, enableDisableSaveButton, setEventListeners, showInputError, hideInputError, isValid} from './validate.js';
+import {FormValidator} from './FormValidate.js';
+
+
 
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_about');
@@ -31,6 +33,17 @@ const imageName = document.querySelector('.popup__image-name');
 const formElementProfile = document.querySelector('#formProfile');
 const formElementCard = document.querySelector('#formCard');
 
+const validationSettings={
+    formSelector: 'popup__container',
+    inputSelector: 'popup__input',
+    submitButtonSelector: 'popup__submit',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'form__input-error_active'
+};
+
+const validatorProfile = new FormValidator(validationSettings, formElementProfile);
+const validatorCard = new FormValidator(validationSettings, formElementCard);
 
 const initialCards = [
     {
@@ -70,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     initialCards.forEach(function (item, index, array) {
-        let card = new Card(item.name, item.link, '#card');
+        const card = new Card(item.name, item.link, '#card');
         
         container.insertAdjacentElement('afterbegin', card.getCard());
     })
