@@ -1,5 +1,5 @@
 
-import Card from './card.js';
+import Card from './Сard.js';
 import {FormValidator} from './FormValidate.js';
 
 
@@ -43,7 +43,9 @@ const validationSettings={
 };
 
 const validatorProfile = new FormValidator(validationSettings, formElementProfile);
+validatorProfile.enableValidation();
 const validatorCard = new FormValidator(validationSettings, formElementCard);
+validatorCard.enableValidation();
 
 const initialCards = [
     {
@@ -81,6 +83,15 @@ document.addEventListener("DOMContentLoaded", () => {
         container.insertAdjacentElement('afterbegin', createCard(item.name, item.link));
     })*/
     
+
+    document.addEventListener('keydown', (e)=> {if (e.key === 'Escape') {
+        closePopup(document.querySelector('.popup_opened'))
+    }});
+
+    const popupImage  = document.querySelector('.popup__image');
+    const imageName = document.querySelector('.popup__image-name');
+    const imagePopup = document.querySelector('#imagePopup');
+
 
     initialCards.forEach(function (item, index, array) {
         const card = new Card(item.name, item.link, '#card');

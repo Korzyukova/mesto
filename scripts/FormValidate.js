@@ -5,9 +5,12 @@ export class FormValidator
 {
   constructor (settings, formElement){
     this.settings = settings;
-    this.formElement = formElement;
+    this._formElement = formElement;
     
-    this._setEventListeners();
+    this._inputList = Array.from(formElement.querySelectorAll(`.${this.settings.inputSelector}`));
+    this._buttonElement = formElement.querySelector(`.${this.settings.submitButtonSelector}`)
+    
+    
      // Найдём все формы с указанным классом в DOM,
     // сделаем из них массив методом Array.from
     //const formList = Array.from(document.querySelectorAll(`.${settings.formSelector}`));
@@ -23,21 +26,24 @@ export class FormValidator
       
     //});
   }
+  enableValidation=()=>
+  {
+    this._setEventListeners();
+  }
 
 _setEventListeners = () => {
   // Находим все поля внутри формы,
   // сделаем из них массив методом Array.from
-  const inputList = Array.from(this.formElement.querySelectorAll(`.${this.settings.inputSelector}`));
-  const buttonElement = this.formElement.querySelector(`.${this.settings.submitButtonSelector}`)
+  
   // Обойдём все элементы полученной коллекции
-  inputList.forEach((inputElement) => {
+  this._inputList.forEach((inputElement) => {
     // каждому полю добавим обработчик события input
     console.log('set lestener for ' + inputElement.id)
     inputElement.addEventListener('input', () => {
       // Внутри колбэка вызовем isValid,
       // передав ей форму и проверяемый элемент
       this._isValid(inputElement);
-      this._enableDisableSaveButton(buttonElement, inputList)
+      this._enableDisableSaveButton(this._buttonElement, this._inputList)
     });
   });
 };
@@ -52,7 +58,7 @@ _isValid(inputElement)
       } else {
         // hideInputError теперь получает параметром форму, в которой
         // находится проверяемое поле, и само это поле
-        this._hideInputError(inputElement);
+        _hideInputError(inputElement);
       }
   }
 
