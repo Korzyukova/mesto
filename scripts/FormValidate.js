@@ -58,7 +58,7 @@ _isValid(inputElement)
       } else {
         // hideInputError теперь получает параметром форму, в которой
         // находится проверяемое поле, и само это поле
-        _hideInputError(inputElement);
+        this._hideInputError(inputElement);
       }
   }
 

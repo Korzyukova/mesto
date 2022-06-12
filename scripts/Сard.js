@@ -1,5 +1,5 @@
   export default class Card {
-    constructor(name, link, template){
+    constructor(name, link, template, openPopupFunction){
         
         this.name = name;
         
@@ -8,6 +8,7 @@
         const cardTemplate = document.querySelector(template).content.querySelector('.photo-grid__rectangle');
         this.card = cardTemplate.cloneNode(true);
         this.photoGridItem = this.card.querySelector('.photo-grid__item');
+        this.openPopup = openPopupFunction;
 
         this.photoGridItem.src = link;
         this.photoGridItem.alt = name;
@@ -36,15 +37,21 @@
         popupImage.alt = this.name;
          imageName.textContent = this.name;
          
-         imagePopup.classList.add('popup_opened');
+         this.openPopup(imagePopup);
+         
+
     }
  
     _createDeleteHandler()
     {
-     this.card.querySelector('.trash').addEventListener('click', (e) => {
-         e.target.closest('.photo-grid__rectangle').remove();
-     });
+     this.card.querySelector('.trash').addEventListener('click', this._deleteHandler);
     }
+
+    _deleteHandler(e)
+    {
+        e.target.closest('.photo-grid__rectangle').remove();
+    }
+
     _createHeartHandler()
     {
      this.card.querySelector('.photo-grid__heart').addEventListener('click', (e) => {

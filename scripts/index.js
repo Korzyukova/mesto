@@ -74,9 +74,25 @@ const initialCards = [
     }
 ];
 
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+    document.addEventListener('keydown', handleEscape);
+}
+
+
+function CreateCards()
+{
+    const container = document.querySelector('.photo-grid');
+    initialCards.forEach(function (item, index, array) {
+        const card = new Card(item.name, item.link, '#card', openPopup);
+        
+        container.insertAdjacentElement('afterbegin', card.getCard());
+    })
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    const container = document.querySelector('.photo-grid');
+    
 
     /*
     initialCards.forEach(function (item, index, array) {        
@@ -87,18 +103,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener('keydown', (e)=> {if (e.key === 'Escape') {
         closePopup(document.querySelector('.popup_opened'))
     }});
-
+/*
     const popupImage  = document.querySelector('.popup__image');
     const imageName = document.querySelector('.popup__image-name');
     const imagePopup = document.querySelector('#imagePopup');
+    */
 
-
-    initialCards.forEach(function (item, index, array) {
-        const card = new Card(item.name, item.link, '#card');
-        
-        container.insertAdjacentElement('afterbegin', card.getCard());
-    })
+    CreateCards();
 });
+
 
 /*
 function createCard(name, link) {
@@ -142,10 +155,7 @@ function handleEscape(e)
 }
 
 
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    document.addEventListener('keydown', handleEscape);
-}
+
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
@@ -157,8 +167,8 @@ profilePopupOpen.addEventListener('click', () => {
     openPopup(profilePopup);
     nameInput.value = profileName.textContent
     jobInput.value = profileDescription.textContent
-    nameInput.dispatchEvent(new Event('input'));
-    jobInput.dispatchEvent(new Event('input'));
+    
+    validatorProfile
 });
 cardPopupOpen.addEventListener('click', () => {
 
@@ -188,15 +198,17 @@ imagePopupClose.addEventListener('click', function () { closePopup(imagePopup) }
     }
     
 
+function newCard(name, link)
+{
+    return (new Card(name, link, '#card')).getCard()   
+}
 
 function submitFormHandlerCard(evt) {
     evt.preventDefault();
-    containerPhotoGrid.insertAdjacentElement('afterbegin', (new Card(placeName.value, linkName.value, '#card')).getCard());
+    containerPhotoGrid.insertAdjacentElement('afterbegin', newCard(placeName.value, linkName.value));
     closePopup(cardPopup);
     linkName.value = '';
     placeName.value = '';
-    linkName.dispatchEvent(new Event('input'));
-    placeName.dispatchEvent(new Event('input'));
 }
 
 
