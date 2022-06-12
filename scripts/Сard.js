@@ -1,10 +1,10 @@
-  export default class Card {
-    constructor(name, link, template, openPopupFunction){
-        
+export default class Card {
+    constructor(name, link, template, openPopupFunction) {
+
         this.name = name;
-        
+
         this.link = link;
- 
+
         const cardTemplate = document.querySelector(template).content.querySelector('.photo-grid__rectangle');
         this.card = cardTemplate.cloneNode(true);
         this.photoGridItem = this.card.querySelector('.photo-grid__item');
@@ -13,54 +13,50 @@
         this.photoGridItem.src = link;
         this.photoGridItem.alt = name;
         this.card.querySelector('.photo-grid__name').textContent = name;
-        
+
         this._createClickHandler();
         this._createDeleteHandler();
         this._createHeartHandler();
     }
 
-     _createClickHandler()
-    {
+    _createClickHandler() {
         this.handle = this._clickHandler.bind(this);
         this.card.querySelector('.photo-grid__item').addEventListener('click', this.handle);
-     document.addEventListener('keydown', (e)=> {if (e.key === 'Escape') {
-        closePopup(document.querySelector('.popup_opened'))
-    }});
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePopup(document.querySelector('.popup_opened'))
+            }
+        });
     }
-    
-    _clickHandler(item)
-    {
-        const popupImage  = document.querySelector('.popup__image');
+
+    _clickHandler(item) {
+        const popupImage = document.querySelector('.popup__image');
         const imageName = document.querySelector('.popup__image-name');
         const imagePopup = document.querySelector('#imagePopup');
-                popupImage.src = this.link;
+        popupImage.src = this.link;
         popupImage.alt = this.name;
-         imageName.textContent = this.name;
-         
-         this.openPopup(imagePopup);
-         
+        imageName.textContent = this.name;
+
+        this.openPopup(imagePopup);
+
 
     }
- 
-    _createDeleteHandler()
-    {
-     this.card.querySelector('.trash').addEventListener('click', this._deleteHandler);
+
+    _createDeleteHandler() {
+        this.card.querySelector('.trash').addEventListener('click', this._deleteHandler);
     }
 
-    _deleteHandler(e)
-    {
+    _deleteHandler(e) {
         e.target.closest('.photo-grid__rectangle').remove();
     }
 
-    _createHeartHandler()
-    {
-     this.card.querySelector('.photo-grid__heart').addEventListener('click', (e) => {
-         e.target.classList.toggle('photo-grid__heart_active');
-     });
+    _createHeartHandler() {
+        this.card.querySelector('.photo-grid__heart').addEventListener('click', (e) => {
+            e.target.classList.toggle('photo-grid__heart_active');
+        });
     }
- 
-    getCard()
-    {
+
+    getCard() {
         return this.card;
     }
- }
+}

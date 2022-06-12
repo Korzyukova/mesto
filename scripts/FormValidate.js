@@ -38,7 +38,6 @@ _setEventListeners = () => {
   // Обойдём все элементы полученной коллекции
   this._inputList.forEach((inputElement) => {
     // каждому полю добавим обработчик события input
-    console.log('set lestener for ' + inputElement.id)
     inputElement.addEventListener('input', () => {
       // Внутри колбэка вызовем isValid,
       // передав ей форму и проверяемый элемент
@@ -50,7 +49,6 @@ _setEventListeners = () => {
 
 _isValid(inputElement)
   {
-    console.log('validate:')
       if (!inputElement.validity.valid) {
         // showInputError теперь получает параметром форму, в которой
         // находится проверяемое поле, и само это поле

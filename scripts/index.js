@@ -1,6 +1,6 @@
 
 import Card from './Сard.js';
-import {FormValidator} from './FormValidate.js';
+import { FormValidator } from './FormValidate.js';
 
 
 
@@ -27,13 +27,13 @@ const cardTemplate = document.querySelector('#card').content.querySelector('.pho
 
 const containerPhotoGrid = document.querySelector('.photo-grid');
 
-const popupImage  = document.querySelector('.popup__image');
+const popupImage = document.querySelector('.popup__image');
 const imageName = document.querySelector('.popup__image-name');
 
 const formElementProfile = document.querySelector('#formProfile');
 const formElementCard = document.querySelector('#formCard');
 
-const validationSettings={
+const validationSettings = {
     formSelector: 'popup__container',
     inputSelector: 'popup__input',
     submitButtonSelector: 'popup__submit',
@@ -80,34 +80,35 @@ function openPopup(popup) {
 }
 
 
-function CreateCards()
-{
+function CreateCards() {
     const container = document.querySelector('.photo-grid');
     initialCards.forEach(function (item, index, array) {
         const card = new Card(item.name, item.link, '#card', openPopup);
-        
+
         container.insertAdjacentElement('afterbegin', card.getCard());
     })
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    
+
 
     /*
     initialCards.forEach(function (item, index, array) {        
         container.insertAdjacentElement('afterbegin', createCard(item.name, item.link));
     })*/
-    
 
-    document.addEventListener('keydown', (e)=> {if (e.key === 'Escape') {
-        closePopup(document.querySelector('.popup_opened'))
-    }});
-/*
-    const popupImage  = document.querySelector('.popup__image');
-    const imageName = document.querySelector('.popup__image-name');
-    const imagePopup = document.querySelector('#imagePopup');
-    */
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closePopup(document.querySelector('.popup_opened'))
+        }
+    });
+    /*
+        const popupImage  = document.querySelector('.popup__image');
+        const imageName = document.querySelector('.popup__image-name');
+        const imagePopup = document.querySelector('#imagePopup');
+        */
 
     CreateCards();
 });
@@ -147,11 +148,10 @@ function createCard(name, link) {
 
 // тут мы кнопкой Escape закрываем попапину
 
-function handleEscape(e)
-{
-   if (e.key === 'Escape') {
-       closePopup(document.querySelector('.popup_opened'))
-   }
+function handleEscape(e) {
+    if (e.key === 'Escape') {
+        closePopup(document.querySelector('.popup_opened'))
+    }
 }
 
 
@@ -167,7 +167,7 @@ profilePopupOpen.addEventListener('click', () => {
     openPopup(profilePopup);
     nameInput.value = profileName.textContent
     jobInput.value = profileDescription.textContent
-    
+
     validatorProfile
 });
 cardPopupOpen.addEventListener('click', () => {
@@ -182,25 +182,20 @@ cardPopupClose.addEventListener('click', function () { closePopup(cardPopup) });
 imagePopupClose.addEventListener('click', function () { closePopup(imagePopup) });
 
 
-    function submitFormHandlerProfile(evt) {
-        console.log('event=', evt),
-        evt.preventDefault();
-        console.log('nameInput=', nameInput);
-        console.log('jobInput=', jobInput);
-    
-    
-    
-        profileName.textContent = nameInput.value;
-    
-        profileDescription.textContent = jobInput.value;
-    
-        closePopup(profilePopup);
-    }
-    
+function submitFormHandlerProfile(evt) {
+    evt.preventDefault();
 
-function newCard(name, link)
-{
-    return (new Card(name, link, '#card')).getCard()   
+
+    profileName.textContent = nameInput.value;
+
+    profileDescription.textContent = jobInput.value;
+
+    closePopup(profilePopup);
+}
+
+
+function newCard(name, link) {
+    return (new Card(name, link, '#card')).getCard()
 }
 
 function submitFormHandlerCard(evt) {
@@ -215,7 +210,7 @@ function submitFormHandlerCard(evt) {
 formElementCard.addEventListener('submit', submitFormHandlerCard);
 formElementProfile.addEventListener('submit', submitFormHandlerProfile);
 
- 
+
 
 const formProfileElement = document.querySelector('#formProfile')
 formProfileElement.addEventListener('click', function (event) {
