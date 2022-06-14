@@ -22,11 +22,6 @@ export default class Card {
     _createClickHandler() {
         this.handle = this._clickHandler.bind(this);
         this.card.querySelector('.photo-grid__item').addEventListener('click', this.handle);
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closePopup(document.querySelector('.popup_opened'))
-            }
-        });
     }
 
     _clickHandler(item) {
@@ -38,8 +33,6 @@ export default class Card {
         imageName.textContent = this.name;
 
         this.openPopup(imagePopup);
-
-
     }
 
     _createDeleteHandler() {
@@ -51,9 +44,12 @@ export default class Card {
     }
 
     _createHeartHandler() {
-        this.card.querySelector('.photo-grid__heart').addEventListener('click', (e) => {
-            e.target.classList.toggle('photo-grid__heart_active');
-        });
+        this.card.querySelector('.photo-grid__heart').addEventListener('click', this._heartHandler);
+    }
+
+    _heartHandler(e) 
+    {
+        e.target.classList.toggle('photo-grid__heart_active');
     }
 
     getCard() {

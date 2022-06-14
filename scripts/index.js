@@ -80,12 +80,14 @@ function openPopup(popup) {
 }
 
 
-function CreateCards() {
+function newCard(name, link) {
+    return (new Card(name, link, '#card')).getCard()
+}
+
+function createCards() {
     const container = document.querySelector('.photo-grid');
     initialCards.forEach(function (item, index, array) {
-        const card = new Card(item.name, item.link, '#card', openPopup);
-
-        container.insertAdjacentElement('afterbegin', card.getCard());
+        container.append(newCard(item.name, item.link));
     })
 }
 
@@ -98,19 +100,13 @@ document.addEventListener("DOMContentLoaded", () => {
         container.insertAdjacentElement('afterbegin', createCard(item.name, item.link));
     })*/
 
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closePopup(document.querySelector('.popup_opened'))
-        }
-    });
     /*
         const popupImage  = document.querySelector('.popup__image');
         const imageName = document.querySelector('.popup__image-name');
         const imagePopup = document.querySelector('#imagePopup');
         */
 
-    CreateCards();
+    createCards();
 });
 
 
@@ -167,8 +163,6 @@ profilePopupOpen.addEventListener('click', () => {
     openPopup(profilePopup);
     nameInput.value = profileName.textContent
     jobInput.value = profileDescription.textContent
-
-    validatorProfile
 });
 cardPopupOpen.addEventListener('click', () => {
 
@@ -194,16 +188,14 @@ function submitFormHandlerProfile(evt) {
 }
 
 
-function newCard(name, link) {
-    return (new Card(name, link, '#card')).getCard()
-}
 
 function submitFormHandlerCard(evt) {
     evt.preventDefault();
-    containerPhotoGrid.insertAdjacentElement('afterbegin', newCard(placeName.value, linkName.value));
+    containerPhotoGrid.prepend(newCard(placeName.value, linkName.value));
     closePopup(cardPopup);
     linkName.value = '';
     placeName.value = '';
+    validatorCard.validate();
 }
 
 

@@ -18,3 +18,10 @@
     margin: 75px 22px 0px;
   }
 }
+
+@media (max-width: 627px) {
+  .popup__input {
+    margin-left: 22px;
+    margin-right: 22px;
+  }
+}

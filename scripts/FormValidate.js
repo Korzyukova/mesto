@@ -42,10 +42,18 @@ _setEventListeners = () => {
       // Внутри колбэка вызовем isValid,
       // передав ей форму и проверяемый элемент
       this._isValid(inputElement);
-      this._enableDisableSaveButton(this._buttonElement, this._inputList)
+      this._enableDisableSaveButton()
     });
   });
 };
+
+validate()
+{
+  this._inputList.forEach((inputElement) => {
+      this._isValid(inputElement);
+  });
+  this._enableDisableSaveButton()
+}
 
 _isValid(inputElement)
   {
@@ -60,12 +68,13 @@ _isValid(inputElement)
       }
   }
 
-_enableDisableSaveButton = (buttonElement, inputList) => {
-  if (inputList.some(el => !el.validity.valid)) {
+_enableDisableSaveButton = () => {
+  
+  if (this._inputList.some(el => !el.validity.valid)) {
     // если есть хотя бы одно поле, не прошедшее валидацию, кнопка будет неактивна
-    buttonElement.disabled = true;
+    this._buttonElement.disabled = true;
   } else {
-    buttonElement.disabled = false;
+    this._buttonElement.disabled = false;
   }
 }
 

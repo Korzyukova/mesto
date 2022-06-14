@@ -1,8 +1,16 @@
 .span {
   /* visibility: hidden; */
   display: block;
+  height: 10px;
   color: red;
   margin-left: 36px;
   margin-right: 36px;
+}
 
+@media (max-width: 627px) {
+  .span {
+    font-size: 11px;
+    margin-left: 22px;
+    margin-right: 22px;
+}
 }
