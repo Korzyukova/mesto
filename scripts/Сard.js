@@ -48,9 +48,9 @@ export default class Card {
     }
 
     _heartHandler(e) 
-    {
-        e.target.classList.toggle('photo-grid__heart_active');
-    }
+   {
+            e.target.classList.toggle('photo-grid__heart_active');
+        }
 
     getCard() {
         return this.card;

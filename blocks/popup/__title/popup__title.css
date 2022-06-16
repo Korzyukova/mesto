@@ -3,15 +3,17 @@
   padding: 0;
   margin-top: 34px;
   margin-left: 36px;
-  margin-bottom: 24px;
+  margin-bottom: 54px;
   font-family: "Inter", "Arial", sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 18px;
   line-height: 22px;
 }
-@media (max-width: 320px) {
+@media (max-width: 500px) {
   .popup__title {
-    margin: 25px auto 0px;
+    margin-bottom: 75px;
+    margin-top: 25px;
+    margin-left:22px;
   }
 }

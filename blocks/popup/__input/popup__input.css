@@ -3,7 +3,7 @@
   padding: 0;
   margin-left: 36px;
   margin-right: 36px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   font-family: "Inter", "Arial", sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -13,13 +13,14 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 320px) {
+/* @media (max-width: 320px) {
   .popup__input {
-    margin: 75px 22px 0px;
+    margin-left: 22px;
+    margin-right: 22px;
   }
-}
+} */
 
-@media (max-width: 627px) {
+@media (max-width: 500px) {
   .popup__input {
     margin-left: 22px;
     margin-right: 22px;

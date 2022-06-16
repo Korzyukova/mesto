@@ -1,4 +1,4 @@
-
+// Спасибо за подробное и внимательное ревью! Надеюсь, в этот раз ничего не упустила
 import Card from './Сard.js';
 import { FormValidator } from './FormValidate.js';
 
@@ -81,13 +81,13 @@ function openPopup(popup) {
 
 
 function newCard(name, link) {
-    return (new Card(name, link, '#card')).getCard()
+    return (new Card(name, link, '#card', openPopup)).getCard()
 }
 
 function createCards() {
-    const container = document.querySelector('.photo-grid');
+    // const container = document.querySelector('.photo-grid');
     initialCards.forEach(function (item, index, array) {
-        container.append(newCard(item.name, item.link));
+        containerPhotoGrid.append(newCard(item.name, item.link));
     })
 }
 
