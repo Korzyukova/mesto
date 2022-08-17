@@ -238,3 +238,5 @@ const profilePopupOverlayImage = document.querySelector('#imagePopup')
 profilePopupOverlayImage.addEventListener('click', function (event) {
     closePopup(profilePopupOverlayImage)
 });
+
+
