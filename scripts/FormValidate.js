@@ -10,21 +10,6 @@ export class FormValidator
     this._inputList = Array.from(formElement.querySelectorAll(`.${this.settings.inputSelector}`));
     this._buttonElement = formElement.querySelector(`.${this.settings.submitButtonSelector}`)
     
-    
-     // Найдём все формы с указанным классом в DOM,
-    // сделаем из них массив методом Array.from
-    //const formList = Array.from(document.querySelectorAll(`.${settings.formSelector}`));
-    // Переберём полученную коллекцию
-    // //formList.forEach((formElement) => {
-    //   formElement.addEventListener('submit', (evt) => {
-    //     // У каждой формы отменим стандартное поведение
-    //     evt.preventDefault();
-    //   });
-  
-      // Для каждой формы вызовем функцию setEventListeners,
-      // передав ей элемент формы
-      
-    //});
   }
   enableValidation=()=>
   {
@@ -97,53 +82,3 @@ _hideInputError = (inputElement) => {
 };
 
 }
-
-// enableValidation({
-//   formSelector: 'popup__container',
-//   inputSelector: 'popup__input',
-//   submitButtonSelector: 'popup__submit',
-//   inactiveButtonClass: 'popup__button_disabled',
-//   inputErrorClass: 'popup__input_type_error',
-//   errorClass: 'form__input-error_active'
-// }); 
-
-//ЗДЕСЬ ЗАКОНЧИЛСЯ КЛАСС
-
-// const enableValidation = (settings) => {
-//     // Найдём все формы с указанным классом в DOM,
-//     // сделаем из них массив методом Array.from
-    
-//     const formList = Array.from(document.querySelectorAll(`.${settings.formSelector}`));
-//     // Переберём полученную коллекцию
-//     formList.forEach((formElement) => {
-//       formElement.addEventListener('submit', (evt) => {
-//         // У каждой формы отменим стандартное поведение
-//         evt.preventDefault();
-//       });
-  
-//       // Для каждой формы вызовем функцию setEventListeners,
-//       // передав ей элемент формы
-//       setEventListeners(formElement, settings);
-//     });
-// };
-
-// фукция enable/disable Save button
- 
-
-
-
-  
-  
-
-// enableValidation({
-  
-//   // errorClass: 'form__input-error_active'
-// }); 
-
-
-
-// Функция isValid теперь принимает formElement и inputElement,
-// а не берёт их из внешней области видимости
-
-
-  

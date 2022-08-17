@@ -1,7 +1,8 @@
-// Спасибо за подробное и внимательное ревью! Надеюсь, в этот раз ничего не упустила
 import Card from './Сard.js';
+import PopupWithForm from './PopupWithForm.js';
 import { FormValidator } from './FormValidate.js';
-
+import Section from './Section.js';
+import UserInfo from './UserInfo.js';
 
 
 const nameInput = document.querySelector('.popup__input_type_name');
@@ -10,8 +11,6 @@ const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const placeName = document.querySelector('.popup__input_type_place-name');
 const linkName = document.querySelector('.popup__input_type_link');
-
-
 
 const profilePopup = document.querySelector('#profilePopup');
 const cardPopup = document.querySelector('#cardPopup');
@@ -73,7 +72,7 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-
+/*
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', handleEscape);
@@ -85,7 +84,6 @@ function newCard(name, link) {
 }
 
 function createCards() {
-    // const container = document.querySelector('.photo-grid');
     initialCards.forEach(function (item, index, array) {
         containerPhotoGrid.append(newCard(item.name, item.link));
     })
@@ -94,53 +92,8 @@ function createCards() {
 document.addEventListener("DOMContentLoaded", () => {
 
 
-
-    /*
-    initialCards.forEach(function (item, index, array) {        
-        container.insertAdjacentElement('afterbegin', createCard(item.name, item.link));
-    })*/
-
-    /*
-        const popupImage  = document.querySelector('.popup__image');
-        const imageName = document.querySelector('.popup__image-name');
-        const imagePopup = document.querySelector('#imagePopup');
-        */
-
     createCards();
 });
-
-
-/*
-function createCard(name, link) {
-    const card = cardTemplate.cloneNode(true);
-    card.querySelector('.photo-grid__item').src = link;
-    card.querySelector('.photo-grid__item').alt = name;
-    card.querySelector('.photo-grid__name').textContent = name;
-
-    card.querySelector('.photo-grid__item').addEventListener('click', (item) => {
-        popupImage.src = link;
-        popupImage.alt = name;
-        imageName.textContent = name;
-        openPopup(imagePopup);
-    });
-
-    card.querySelector('.photo-grid__heart').addEventListener('click', (e) => {
-        e.target.classList.toggle('photo-grid__heart_active');
-    });
-
-    card.querySelector('.trash').addEventListener('click', (e) => {
-        e.target.closest('.photo-grid__rectangle').remove();
-    });
-
-
-
-    return card;
-}
-
-*/
-
-
-
 
 // тут мы кнопкой Escape закрываем попапину
 
@@ -159,15 +112,8 @@ function closePopup(popup) {
 }
 
 
-profilePopupOpen.addEventListener('click', () => {
-    openPopup(profilePopup);
-    nameInput.value = profileName.textContent
-    jobInput.value = profileDescription.textContent
-});
-cardPopupOpen.addEventListener('click', () => {
 
-    openPopup(cardPopup);
-});
+
 
 
 
@@ -175,32 +121,6 @@ profilePopupClose.addEventListener('click', function () { closePopup(profilePopu
 cardPopupClose.addEventListener('click', function () { closePopup(cardPopup) });
 imagePopupClose.addEventListener('click', function () { closePopup(imagePopup) });
 
-
-function submitFormHandlerProfile(evt) {
-    evt.preventDefault();
-
-
-    profileName.textContent = nameInput.value;
-
-    profileDescription.textContent = jobInput.value;
-
-    closePopup(profilePopup);
-}
-
-
-
-function submitFormHandlerCard(evt) {
-    evt.preventDefault();
-    containerPhotoGrid.prepend(newCard(placeName.value, linkName.value));
-    closePopup(cardPopup);
-    linkName.value = '';
-    placeName.value = '';
-    validatorCard.validate();
-}
-
-
-formElementCard.addEventListener('submit', submitFormHandlerCard);
-formElementProfile.addEventListener('submit', submitFormHandlerProfile);
 
 
 
@@ -238,5 +158,69 @@ const profilePopupOverlayImage = document.querySelector('#imagePopup')
 profilePopupOverlayImage.addEventListener('click', function (event) {
     closePopup(profilePopupOverlayImage)
 });
+
+*/
+
+//////////////////////////////////
+
+
+const cardsList = new Section({
+    items: initialCards,
+    renderer: (item) => {
+     const card = new Card(item, '#card');
+      const cardElement = card.generateCard();
+
+      cardsList.addItem(cardElement);
+    }
+  },
+  '.photo-grid'
+); 
+
+
+cardsList.renderItems();
+
+const profilePopUp = new PopupWithForm('#profilePopup');
+const cardPopUp = new PopupWithForm('#cardPopup');
+
+profilePopupOpen.addEventListener('click', () => {
+    profilePopUp.open();
+    const userInfo = new UserInfo('.profile__name', '.profile__description');
+    const info = userInfo.getUserInfo();
+    nameInput.value = info.name;
+    jobInput.value = info.description;
+});
+
+function submitFormHandlerProfile(evt) {
+    evt.preventDefault();
+    const userInfo = new UserInfo('.profile__name', '.profile__description');
+    userInfo.setUserInfo(nameInput.value, jobInput.value);
+    profilePopUp.close();
+}
+
+formElementProfile.addEventListener('submit', submitFormHandlerProfile);
+
+cardPopupOpen.addEventListener('click', () => {
+    cardPopUp.open();
+});
+
+function submitFormHandlerCard(evt) {
+    evt.preventDefault();
+    //containerPhotoGrid.prepend(newCard(placeName.value, linkName.value));
+
+    const card = new Card({
+        name: placeName.value,
+        link: linkName.value,
+    }, '#card');
+    const cardElement = card.generateCard();
+
+    cardsList.prependItem(cardElement);
+
+    cardPopUp.close();
+    linkName.value = '';
+    placeName.value = '';
+    validatorCard.validate();
+}
+
+formElementCard.addEventListener('submit', submitFormHandlerCard);
 
 
