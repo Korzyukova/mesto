@@ -72,109 +72,18 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-/*
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    document.addEventListener('keydown', handleEscape);
-}
-
-
-function newCard(name, link) {
-    return (new Card(name, link, '#card', openPopup)).getCard()
-}
-
-function createCards() {
-    initialCards.forEach(function (item, index, array) {
-        containerPhotoGrid.append(newCard(item.name, item.link));
-    })
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-
-
-    createCards();
-});
-
-// тут мы кнопкой Escape закрываем попапину
-
-function handleEscape(e) {
-    if (e.key === 'Escape') {
-        closePopup(document.querySelector('.popup_opened'))
-    }
-}
-
-
-
-
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', handleEscape);
-}
-
-
-
-
-
-
-
-profilePopupClose.addEventListener('click', function () { closePopup(profilePopup) });
-cardPopupClose.addEventListener('click', function () { closePopup(cardPopup) });
-imagePopupClose.addEventListener('click', function () { closePopup(imagePopup) });
-
-
-
-
-const formProfileElement = document.querySelector('#formProfile')
-formProfileElement.addEventListener('click', function (event) {
-    event.stopPropagation()
-})
-
-const formCardElement = document.querySelector('#formCard')
-formCardElement.addEventListener('click', function (event) {
-    event.stopPropagation()
-})
-
-const formImageElement = document.querySelector('#imagePopup')
-formImageElement.addEventListener('click', function (event) {
-    event.stopPropagation()
-})
-
-
-const profilePopupOverlayProfile = document.querySelector('#profilePopup')
-profilePopupOverlayProfile.addEventListener('click', function (event) {
-    closePopup(profilePopupOverlayProfile)
-});
-
-
-
-const profilePopupOverlayCard = document.querySelector('#cardPopup')
-profilePopupOverlayCard.addEventListener('click', function (event) {
-    closePopup(profilePopupOverlayCard)
-});
-
-
-
-const profilePopupOverlayImage = document.querySelector('#imagePopup')
-profilePopupOverlayImage.addEventListener('click', function (event) {
-    closePopup(profilePopupOverlayImage)
-});
-
-*/
-
-//////////////////////////////////
-
 
 const cardsList = new Section({
     items: initialCards,
     renderer: (item) => {
-     const card = new Card(item, '#card');
-      const cardElement = card.generateCard();
+        const card = new Card(item, '#card');
+        const cardElement = card.generateCard();
 
-      cardsList.addItem(cardElement);
+        cardsList.addItem(cardElement);
     }
-  },
-  '.photo-grid'
-); 
+},
+    '.photo-grid'
+);
 
 
 cardsList.renderItems();
