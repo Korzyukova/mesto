@@ -1,3 +1,7 @@
+// Уважаемый Сергей! Не могу понять, как это -Сборка приложения для деплоя не работает. У меня все открывается,как надо. 
+// Дайте, пожалуйста, более развернутое пояснение. Спасибо
+
+
 const path = require('path'); // подключаем path к конфигу вебпак
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // подключите плагин
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
