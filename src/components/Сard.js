@@ -37,8 +37,23 @@ export default class Card {
         card.querySelector('.photo-grid__name').textContent = this._item.name;
 
         this._createClickHandler(card);
+        this._createDeleteHandler(card);
+        this._createHeartHandler(card);
 
         return card
     }
+    _createDeleteHandler(card) {
+        card.querySelector('.trash').addEventListener('click', this._deleteHandler);
+    }
+    _deleteHandler(e) {
+        e.target.closest('.photo-grid__rectangle').remove();
+    }
+    _createHeartHandler(card) {
+        card.querySelector('.photo-grid__heart').addEventListener('click', this._heartHandler);
+    }
+    _heartHandler(e) 
+   {
+            e.target.classList.toggle('photo-grid__heart_active');
+        }
 
 }

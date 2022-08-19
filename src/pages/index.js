@@ -1,8 +1,9 @@
-import Card from './Сard.js';
-import PopupWithForm from './PopupWithForm.js';
-import { FormValidator } from './FormValidate.js';
-import Section from './Section.js';
-import UserInfo from './UserInfo.js';
+import './index.css'; // добавьте импорт главного файла стилей 
+import Card from '../components/Сard.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import { FormValidator } from '../components/FormValidate.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
 
 
 const nameInput = document.querySelector('.popup__input_type_name');
