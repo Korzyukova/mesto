@@ -2,9 +2,13 @@
 // Дайте, пожалуйста, более развернутое пояснение. Спасибо
 
 
+// Спасибо большое за подробное объяснение! Постаралась все исправить.
+
+
 const path = require('path'); // подключаем path к конфигу вебпак
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // подключите плагин
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
+
 
 
 module.exports = {
@@ -47,8 +51,12 @@ module.exports = {
     // при обработке этих файлов нужно использовать
     // MiniCssExtractPlugin.loader и css-loader
     use: [MiniCssExtractPlugin.loader, {
-      loader: 'css-loader'
-    }]
+      loader: 'css-loader', 
+      options: {
+        importLoaders: 1
+      }
+    }, 
+    'postcss-loader']
   }
 ] 
 }
