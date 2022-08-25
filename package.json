@@ -22,7 +22,7 @@
     "webpack-dev-server": "^4.10.0"
   },
   "scripts": {
-    "build": "rm -rf dist && webpack --mode development",
+    "build": "rm -rf dist && webpack --mode production",
     "dev": "webpack serve"
   },
   "repository": {
