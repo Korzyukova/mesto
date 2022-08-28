@@ -131,32 +131,25 @@ function submitFormHandlerCard(evt) {
 */
 /*formElementCard.addEventListener('submit', submitFormHandlerCard);*/
 
-export const profileInfo = new UserInfo('.profile__name', '.profile__description');
+const profileInfo = new UserInfo('.profile__name', '.profile__description');
 
 function openImage()
 {
-    popUpWithImage.open();
-        const popupImage = document.querySelector('.popup__image');
-        const imageName = document.querySelector('.popup__image-name');
-        const imagePopup = document.querySelector('#imagePopup');
-        popupImage.src = this._item.link;
-        popupImage.alt = this._item.name;
-        imageName.textContent = this._item.name;
+    popUpWithImage.open(this._item.link, this._item.name);
 }
-export const popUpWithImage = new PopupWithImage('#imagePopup', );
-export const profilePopUp = new PopupWithForm('#profilePopup');
+
+const popUpWithImage = new PopupWithImage('#imagePopup');
+const profilePopUp = new PopupWithForm('#profilePopup', (e)=>{
+    profileInfo.setUserInfo(e.name, e.about);
+    profilePopUp.close();
+});
 
 
-export const addCardPopUp = new PopupWithForm('#cardPopup', (e)=> { 
-    e.preventDefault();
-    
-    var values = addCardPopUp._getInputValues();
-    
+const addCardPopUp = new PopupWithForm('#cardPopup', (e)=> { 
     const card = createCard({
-        name: values[0].value,
-        link: values[1].value});
-    
-
+        name: e.name,
+        link: e.link
+    });
     cardsList.prependItem(card);
 
     addCardPopUp.close();
@@ -166,11 +159,9 @@ export const addCardPopUp = new PopupWithForm('#cardPopup', (e)=> {
 profilePopupOpen.addEventListener('click', () => {
     profilePopUp.open();
     var userInfo = profileInfo.getUserInfo();
-    profilePopUp._setInputValues([userInfo.name, userInfo.description]);
-    validatorProfile.validate();
+    profilePopUp._setInputValues({ name: userInfo.name, about:  userInfo.description});
 });
 
 cardPopupOpen.addEventListener('click', () => {
     addCardPopUp.open();
-    validatorCard.validate();
 });

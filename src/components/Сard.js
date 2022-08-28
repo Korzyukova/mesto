@@ -14,6 +14,7 @@ export default class Card {
     generateCard() {
         const cardTemplate = document.querySelector(this._templateSelector).content.querySelector('.photo-grid__rectangle');
         const card = cardTemplate.cloneNode(true);
+        // я не понимаю, как это сделать
         this.card = card;
 
         const photoGridItem = card.querySelector('.photo-grid__item');
