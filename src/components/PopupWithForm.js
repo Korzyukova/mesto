@@ -10,6 +10,7 @@ export default class PopupWithForm extends Popup {
 
     open() {
         super.open();
+        this.form.reset();
     }
 
     close() {
@@ -38,7 +39,6 @@ export default class PopupWithForm extends Popup {
         this.popup.querySelector('form').addEventListener('submit', (evt) => {
             evt.preventDefault();
             this.submitHandler(this._getInputValues());
-            this.form.reset();
           });
     }
 }

@@ -133,9 +133,9 @@ function submitFormHandlerCard(evt) {
 
 const profileInfo = new UserInfo('.profile__name', '.profile__description');
 
-function openImage()
+function openImage(item)
 {
-    popUpWithImage.open(this._item.link, this._item.name);
+    popUpWithImage.open(item.link, item.name);
 }
 
 const popUpWithImage = new PopupWithImage('#imagePopup');
@@ -164,4 +164,5 @@ profilePopupOpen.addEventListener('click', () => {
 
 cardPopupOpen.addEventListener('click', () => {
     addCardPopUp.open();
+    validatorCard.validate();
 });
