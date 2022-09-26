@@ -1,0 +1,14 @@
+.profile__picture_container {
+    position: relative;
+    height: 120px;
+  }
+  
+  
+  .profile__picture_container:hover .profile__picture {
+    opacity: 0.3;
+  
+  }
+  
+.profile__picture_container:hover .profile__picture_edit {
+    display: block;
+  }
