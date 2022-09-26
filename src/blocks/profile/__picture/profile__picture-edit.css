@@ -1,5 +1,5 @@
 
-.profile__picture_edit {
+.profile__picture-edit {
     display: none;
     position: absolute;
     left: calc(50% - 10px);

@@ -1,0 +1,50 @@
+.profile__picture-image {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+
+
+}
+
+/* .profile__picture_container {
+  position: relative;
+  height: 120px;
+}
+
+
+.profile__picture_container:hover .profile__picture {
+  opacity: 0.3;
+
+} */
+/* 
+.profile__picture_edit {
+  display: none;
+  position: absolute;
+  left: calc(50% - 10px);
+  top: calc(50% - 10px);
+  color: aliceblue;
+  background-image: url(../../../images/Bigpen.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+} */
+/* 
+.profile__picture_container:hover .profile__picture_edit {
+  display: block;
+} */
+
+@media (max-width: 1025px) {
+  .profile__picture-image {
+    /*margin-bottom: 26px;*/
+  }
+}
+
+@media (max-width: 320px) {
+  .profile__picture-image {
+    /*margin-bottom: 26px;*/
+  }
+
+}

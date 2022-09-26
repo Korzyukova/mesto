@@ -19,8 +19,8 @@ const cardPopup = document.querySelector('#cardPopup');
 const imagePopup = document.querySelector('#imagePopup');
 const profilePopupOpen = document.querySelector('.profile__edit-button');
 const cardPopupOpen = document.querySelector('.profile__add-button');
-const profilePicure = document.querySelector('.profile__picture');
-const profilePicureEdit = document.querySelector('.profile__picture_edit');
+const profilePicture = document.querySelector('.profile__picture-image');
+const profilePictureEdit = document.querySelector('.profile__picture-edit');
 const profilePopupClose = profilePopup.querySelector('.popup__closed');
 const cardPopupClose = cardPopup.querySelector('.popup__closed');
 const imagePopupClose = imagePopup.querySelector('.popup__closed');
@@ -118,7 +118,7 @@ api.getProfile()
     console.log(data);
     profileName.innerText = data.name;
         profileDescription.innerText = data.about;
-        profilePicure.src = data.avatar;
+        profilePicture.src = data.avatar;
     
 });
 
@@ -178,7 +178,7 @@ const confirmDeletePopUp = new PopupDelete('#deletePopup', (e)=> {
 const changeAvatarPopUp = new PopupWithForm('#avatarPopup', (e)=> { 
     changeAvatarPopUp.popup.querySelector('button[type=submit]').textContent = 'Сохранение...';
     api.patchAvatar(e.link).then((data) => {
-        profilePicure.src = e.link;
+        profilePicture.src = e.link;
         changeAvatarPopUp.popup.querySelector('button[type=submit]').textContent = 'Сохранить';
         changeAvatarPopUp.close();
     });
@@ -198,7 +198,7 @@ cardPopupOpen.addEventListener('click', () => {
 
 
 
-profilePicureEdit.addEventListener('click', () => {
+profilePictureEdit.addEventListener('click', () => {
     changeAvatarPopUp.open();
     validatorCard.validate();
 });
