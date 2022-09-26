@@ -9,6 +9,6 @@
   
   }
   
-.profile__picture:hover .profile__picture_edit {
+.profile__picture:hover .profile__picture-edit {
     display: block;
   }
