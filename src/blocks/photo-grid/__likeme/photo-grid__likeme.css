@@ -1,0 +1,6 @@
+.photo-grid__likeme {
+display:flex;
+flex-direction: column;
+justify-content: center;
+margin-right: 20px;
+}

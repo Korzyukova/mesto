@@ -1,0 +1,11 @@
+.photo-grid__likes {
+    width: 22px;
+    height: 19px;
+    border: none;
+    align-self: center;
+    margin: 0;
+    margin-top: 5px;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+}

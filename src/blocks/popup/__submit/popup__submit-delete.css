@@ -1,0 +1,40 @@
+.popup__submit-delete {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 36px;
+    align-self: center;
+    width: 358px;
+    height: 50px;
+    font-family: "Inter", "Arial", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #000000;
+    border: none;
+    cursor: pointer;
+  }
+  @media (max-width: 500px) {
+    .popup__submit-delete {
+      margin-bottom: 25px;
+      width: 238px;
+      height: 46px;
+    }
+  }
+  @media (max-width: 320px) {
+    .popup__submit-delete {
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+  .popup__submit-delete:hover {
+    opacity: 0.8;
+  }
+  .popup__submit-delete:disabled {
+    border: 1px solid black;
+    background-color: #ffffff;
+    color: black;
+    opacity: 0.6;
+    }
