@@ -23,8 +23,8 @@
   display: none;
   
   position: absolute;
-  left:calc(50%-10px);
-  top:calc(50%-10px);
+  left:calc(50% - 10px);
+  top:calc(50% - 10px);
   color: aliceblue;
   background-image: url(../../../images/Bigpen.png);
   background-repeat: no-repeat;
