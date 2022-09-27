@@ -3,12 +3,13 @@
 
 export class FormValidator {
   constructor(settings, formElement) {
+    
     this.settings = settings;
     this._formElement = formElement;
 
     this._inputList = Array.from(formElement.querySelectorAll(`.${this.settings.inputSelector}`));
     this._buttonElement = formElement.querySelector(`.${this.settings.submitButtonSelector}`)
-
+    
   }
   enableValidation = () => {
     this._setEventListeners();
@@ -25,16 +26,16 @@ export class FormValidator {
         // Внутри колбэка вызовем isValid,
         // передав ей форму и проверяемый элемент
         this._isValid(inputElement);
-        this._enableDisableSaveButton()
+        this._toggleSaveButton()
       });
     });
   };
 
-  validate() {
+  resetValidation() {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
-    this._enableDisableSaveButton()
+    this._toggleSaveButton()
   }
 
   _isValid(inputElement) {
@@ -49,7 +50,7 @@ export class FormValidator {
     }
   }
 
-  _enableDisableSaveButton = () => {
+  _toggleSaveButton = () => {
 
     if (this._inputList.some(el => !el.validity.valid)) {
       // если есть хотя бы одно поле, не прошедшее валидацию, кнопка будет неактивна

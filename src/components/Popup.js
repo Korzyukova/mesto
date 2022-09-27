@@ -3,6 +3,7 @@ export default class Popup {
         this.popup = document.querySelector(selector);
         this._handleEscClose = this._handleEscClose.bind(this);
         this.setEventListeners();
+        this.submitButton = this.popup.querySelector('button[type=submit]');
     }
 
     open() {

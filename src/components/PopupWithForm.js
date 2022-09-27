@@ -8,10 +8,6 @@ export default class PopupWithForm extends Popup {
         this._inputList = this.popup.querySelectorAll('input');
     }
 
-    open() {
-        super.open();
-    }
-
     close() {
         super.close();
         this.form.reset();
@@ -27,8 +23,8 @@ export default class PopupWithForm extends Popup {
         return this._formValues;
       } 
 
-    _setInputValues(values) {
-        for(var item in values){
+    setInputValues(values) {
+        for(const item in values){
             this.popup.querySelector(`[name=${item}]`).value = values[item];
         }
     }

@@ -13,10 +13,6 @@ export default class PopupDelete extends Popup {
         super.open();
     }
 
-    close() {
-        super.close();
-    }
-
     setEventListeners() {
         super.setEventListeners();
         
