@@ -6,7 +6,7 @@ import PopupDelete from '../components/PopupDelete.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithImage from '../components/PopupImage.js';
-import {api, profilePopupOpen, cardPopupOpen, profilePictureEdit, validatorProfile, validatorCard, validatorAvatar } from '../utils/constants.js';
+import { api, profilePopupOpen, cardPopupOpen, profilePictureEdit, validatorProfile, validatorCard, validatorAvatar } from '../utils/constants.js';
 
 
 function createCard(item) {
@@ -55,7 +55,7 @@ function openImage(item) {
 
 const popUpWithImage = new PopupWithImage('#imagePopup');
 const profilePopUp = new PopupWithForm('#profilePopup', (e) => {
-    profilePopUp.submitButton.textContent = 'Сохранение...';
+    profilePopUp.renderLoading(true, 'Сохранение...');
     api.patchProfile({
         name: e.name,
         about: e.about
@@ -65,14 +65,15 @@ const profilePopUp = new PopupWithForm('#profilePopup', (e) => {
         profilePopUp.close();
 
     }).catch((err) => console.error(err))
-    .finally(() => {
-        profilePopUp.submitButton.textContent = 'Сохранить';
-    });;
+        .finally(() => {
+            profilePopUp.renderLoading(fasle);
+        });;
 });
 
 
 const addCardPopUp = new PopupWithForm('#cardPopup', (e) => {
-    addCardPopUp.submitButton.textContent = 'Сохранение...';
+    addCardPopUp.renderLoading(true, 'Сохранение...');
+
     api.postInitialCards({
         name: e.name,
         link: e.link
@@ -85,7 +86,7 @@ const addCardPopUp = new PopupWithForm('#cardPopup', (e) => {
             addCardPopUp.close();
         }).catch((err) => console.error(err))
         .finally(() => {
-            addCardPopUp.submitButton.textContent = 'Создать';
+            addCardPopUp.renderLoading(false);
         });
 });
 
@@ -99,14 +100,15 @@ const confirmDeletePopUp = new PopupDelete('#deletePopup', (e) => {
 });
 
 const changeAvatarPopUp = new PopupWithForm('#avatarPopup', (e) => {
-    changeAvatarPopUp.submitButton.textContent = 'Сохранение...';
+    changeAvatarPopUp.renderLoading(true, 'Сохранение...');
+
     api.patchAvatar(e.link).then((data) => {
         profileInfo.setUserInfo(null, null, e.link);
         changeAvatarPopUp.close();
     }).catch((err) => console.error(err)).
-    finally(() => {
-        changeAvatarPopUp.submitButton.textContent = 'Сохранить';
-    });
+        finally(() => {
+            changeAvatarPopUp.renderLoading(false);
+        });
 });
 
 
