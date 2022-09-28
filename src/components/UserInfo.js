@@ -9,11 +9,11 @@ export default class UserInfo {
     }
 
     setUserInfo(name, description, avatarUrl) {
-        if (name)        
-        this.nameElement.textContent = name;
+        if (name)
+            this.nameElement.textContent = name;
         if (description)
-        this.aboutElement.textContent = description;
+            this.aboutElement.textContent = description;
         if (avatarUrl)
-        this.avatarElement.src = avatarUrl;
+            this.avatarElement.src = avatarUrl;
     }
 }

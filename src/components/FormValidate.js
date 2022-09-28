@@ -3,13 +3,13 @@
 
 export class FormValidator {
   constructor(settings, formElement) {
-    
+
     this.settings = settings;
     this._formElement = formElement;
 
     this._inputList = Array.from(formElement.querySelectorAll(`.${this.settings.inputSelector}`));
     this._buttonElement = formElement.querySelector(`.${this.settings.submitButtonSelector}`)
-    
+
   }
   enableValidation = () => {
     this._setEventListeners();

@@ -1,5 +1,5 @@
 import { FormValidator } from '../components/FormValidate.js';
-import Api  from '../components/Api.js';
+import Api from '../components/Api.js';
 
 export const profilePopupOpen = document.querySelector('.profile__edit-button');
 export const cardPopupOpen = document.querySelector('.profile__add-button');

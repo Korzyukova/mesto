@@ -66,7 +66,7 @@ const profilePopUp = new PopupWithForm('#profilePopup', (e) => {
 
     }).catch((err) => console.error(err))
         .finally(() => {
-            profilePopUp.renderLoading(fasle);
+            profilePopUp.renderLoading(false);
         });;
 });
 
